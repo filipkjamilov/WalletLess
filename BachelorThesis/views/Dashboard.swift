@@ -37,13 +37,6 @@ struct Dashboard: View {
                             currentMerchant = merchant
                             isPresentingSheet.toggle()
                         }
-                    
-                    AsyncImage(url: URL(string: merchant.image)) { image in
-                        image.resizable()
-                    } placeholder: {
-                        ProgressView()
-                    }
-                    
                 }
             }
             

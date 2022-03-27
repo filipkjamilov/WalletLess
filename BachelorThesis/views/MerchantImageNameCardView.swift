@@ -4,32 +4,25 @@ import SwiftUI
 
 struct MerchantImageNameCardView: View {
     
-    var merchant: MerchantsFireStore
+    var merchant: MerchantDto
     
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
-            Image(uiImage: UIImage(data: merchant.image!)!)
-                .resizable()
+            if #available(iOS 15.0, *) {
+                AsyncImage(url: URL(string: merchant.image)) { image in
+                    image.resizable()
+                } placeholder: {
+                    ProgressView()
+                }
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 120)
                 .cornerRadius(15)
                 .padding(.all, 10)
-            
-//            if #available(iOS 15.0, *) {
-//                AsyncImage(url: URL(string: merchant.image)) { image in
-//                    image.resizable()
-//                } placeholder: {
-//                    ProgressView()
-//                }
-//                .aspectRatio(contentMode: .fit)
-//                .frame(width: 120)
-//                .cornerRadius(15)
-//                .padding(.all, 10)
-//
-//            } else {
-//                // TODO: FKJ - Third part lib will be used as main async image view
-//                // Fallback on earlier versions
-//            }
+                
+            } else {
+                // TODO: FKJ - Third part lib will be used as main async image view
+                // Fallback on earlier versions
+            }
             Text(merchant.name)
                 .font(.system(size: 26, weight: .bold, design: .default))
                 .padding(.trailing, 10)

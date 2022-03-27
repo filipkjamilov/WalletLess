@@ -12,12 +12,10 @@ import UIKit
 class RealmManager: ObservableObject {
     private(set) var localRealm: Realm?
     @Published private(set) var merchants: [MerchantDto] = []
-    @Published private(set) var merchantsFireStore: [MerchantsFireStore] = []
     
     init() {
         openRealm()
         getMerchants()
-        getMerchantsFireStore()
     }
     
     func openRealm() {
@@ -58,44 +56,12 @@ class RealmManager: ObservableObject {
         }
     }
     
-    func addMerhantFireStore(name: String, image: String, locations: [String: Any]?) {
-        if let localRealm = localRealm {
-            do {
-                
-                let imageURL = URL(string: image)!
-                let downloadedImage = try Data(contentsOf: imageURL)
-                
-                try localRealm.write {
-                    let merchant = MerchantsFireStore(value: ["name": name,
-                                                              "image": downloadedImage,
-                                                              "locations": locations])
-                    localRealm.add(merchant)
-                    getMerchantsFireStore()
-                    print("New merchant firestore added")
-                }
-            } catch {
-                print("Error adding merchant: \(error)")
-            }
-        }
-    }
-    
     func getMerchants() {
         if let localRealm = localRealm {
             let allMerchants = localRealm.objects(MerchantDto.self)
             merchants = []
             allMerchants.forEach { merchant in
                 merchants.append(merchant)
-            }
-            
-        }
-    }
-    
-    func getMerchantsFireStore() {
-        if let localRealm = localRealm {
-            let allMerchants = localRealm.objects(MerchantsFireStore.self)
-            merchantsFireStore = []
-            allMerchants.forEach { merchant in
-                merchantsFireStore.append(merchant)
             }
             
         }
