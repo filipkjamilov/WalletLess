@@ -12,7 +12,7 @@ class MerchantsViewModel: ObservableObject {
     let databaseName: String = "AllCards"
     
     func fetchData() {
-        let database = Database.database().reference().child("AllCards")
+        let database = Database.database().reference().child(databaseName)
         
         database.observe(.value, with: { snap in
             
@@ -33,7 +33,7 @@ class MerchantsViewModel: ObservableObject {
     }
     
     func fetchDataIfNeeded() {
-        let database = Database.database().reference().child("AllCards")
+        let database = Database.database().reference().child(databaseName)
         
         database.observe(.value, with: { snap in
             

@@ -92,23 +92,3 @@ class LocationsDto: Object, ObjectKeyIdentifiable {
         self.latitude = latitude
     }
 }
-
-class MerchantsFireStore: Object, ObjectKeyIdentifiable {
-    @Persisted(primaryKey: true) var id: ObjectId
-    @Persisted var name: String = ""
-    @Persisted var image: Data?
-    @Persisted var locations: List<LocationsDto>
-    
-    
-    convenience init(name: String, image: Data?, locations: [String: Any]?) {
-        self.init()
-        self.name = name
-        self.image = image
-        if locations != nil {
-            locations?.forEach { location in
-                self.locations.append(LocationsDto(logitude: 22.2, latitude: 22.2))
-            }
-        }
-    }
-    
-}

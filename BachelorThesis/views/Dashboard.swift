@@ -2,7 +2,6 @@
 
 import SwiftUI
 import RealmSwift
-import CoreImage.CIFilterBuiltins
 
 struct Dashboard: View {
     
@@ -15,33 +14,36 @@ struct Dashboard: View {
                                                                   typeOfCode: nil)
     
     var body: some View {
-        ZStack {
-            List {
-                ForEach(realmManager.merchants, id: \.id) { merchant in
-                    
-                    Image(uiImage: UIImage(data: merchant.downloadedImage!)!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(15)
-                        .padding(.top, 10)
-                        .padding(.bottom, 10)
-                        .listRowInsets(.init())
-                        .swipeActions(edge: .trailing) {
-                            Button(role: .destructive) {
-                                realmManager.deleteMerchant(id: merchant.id)
-                            } label: {
-                                Label("Delete", systemImage: "trash")
+        NavigationView {
+            ZStack {
+                List {
+                    ForEach(realmManager.merchants, id: \.id) { merchant in
+                        
+                        Image(uiImage: UIImage(data: merchant.downloadedImage!)!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .cornerRadius(15)
+                            .padding(.top, 10)
+                            .padding(.bottom, 10)
+                            .listRowInsets(.init())
+                            .swipeActions(edge: .trailing) {
+                                Button(role: .destructive) {
+                                    realmManager.deleteMerchant(id: merchant.id)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
                             }
-                        }
-                        .onTapGesture {
-                            currentMerchant = merchant
-                            isPresentingSheet.toggle()
-                        }
+                            .onTapGesture {
+                                currentMerchant = merchant
+                                isPresentingSheet.toggle()
+                                print("Tapped")
+                            }
+                    }
                 }
+                .navigationBarTitle("Dashboard", displayMode: .inline)
+                // Modal view for showing the card details
+                ModalView(isShowing: $isPresentingSheet, merchant: $currentMerchant)
             }
-            
-            ModalView(isShowing: $isPresentingSheet, merchant: $currentMerchant)
-            
         }
     }
 }
