@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		022EA28227DFA7310047F58F /* Dummycode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022EA28127DFA7310047F58F /* Dummycode.swift */; };
 		022EA28727DFA7F50047F58F /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022EA28627DFA7F50047F58F /* ModalView.swift */; };
 		0245CE5E27B30E0400DFBF8A /* CodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245CE5D27B30E0400DFBF8A /* CodeScanner.swift */; };
 		0245CE6027B3123200DFBF8A /* ScannerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245CE5F27B3123200DFBF8A /* ScannerCoordinator.swift */; };
@@ -51,7 +50,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		022EA28127DFA7310047F58F /* Dummycode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummycode.swift; sourceTree = "<group>"; };
 		022EA28627DFA7F50047F58F /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		0245CE5D27B30E0400DFBF8A /* CodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScanner.swift; sourceTree = "<group>"; };
 		0245CE5F27B3123200DFBF8A /* ScannerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerCoordinator.swift; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 				02763D7C27CB8B1C0036F41A /* Settings.swift */,
 				02763D8027CB8C200036F41A /* ScannerView.swift */,
 				02763D9227CC1A660036F41A /* MerchantImageNameCardView.swift */,
-				022EA28127DFA7310047F58F /* Dummycode.swift */,
 				022EA28627DFA7F50047F58F /* ModalView.swift */,
 			);
 			path = views;
@@ -349,7 +346,6 @@
 				02E932AF27344DCA0059D1CF /* ContentView.swift in Sources */,
 				0245CE6227B317C400DFBF8A /* ScannerViewController.swift in Sources */,
 				02763D7D27CB8B1C0036F41A /* Settings.swift in Sources */,
-				022EA28227DFA7310047F58F /* Dummycode.swift in Sources */,
 				02E932AD27344DCA0059D1CF /* BachelorThesisApp.swift in Sources */,
 				02763D7B27CB8B070036F41A /* Merchants.swift in Sources */,
 				02763D8D27CB9C100036F41A /* Merchant.swift in Sources */,

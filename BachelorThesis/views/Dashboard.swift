@@ -6,7 +6,9 @@ import RealmSwift
 struct Dashboard: View {
     
     @EnvironmentObject var realmManager: RealmManager
+    @Binding var tabSelection: Int
     @State private var isPresentingSheet = false
+    @State private var isPresentingConfirmationDialog = false
     @State private var currentMerchant: MerchantDto = MerchantDto(name: "Test",
                                                                   image: "Test image",
                                                                   locations: nil,
@@ -16,8 +18,8 @@ struct Dashboard: View {
     var body: some View {
         NavigationView {
             ZStack {
-                List {
-                    ForEach(realmManager.merchants, id: \.id) { merchant in
+                ScrollView {
+                    ForEach(realmManager.merchants.filter({ !$0.isInvalidated }), id: \.id) { merchant in
                         
                         Image(uiImage: UIImage(data: merchant.downloadedImage!)!)
                             .resizable()
@@ -26,18 +28,27 @@ struct Dashboard: View {
                             .padding(.top, 10)
                             .padding(.bottom, 10)
                             .listRowInsets(.init())
-                            .swipeActions(edge: .trailing) {
-                                Button(role: .destructive) {
-                                    realmManager.deleteMerchant(id: merchant.id)
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
-                                }
-                            }
                             .onTapGesture {
                                 currentMerchant = merchant
                                 isPresentingSheet.toggle()
-                                print("Tapped")
                             }
+                            .onLongPressGesture {
+                                currentMerchant = merchant
+                                isPresentingConfirmationDialog = true
+                            }
+                            .alert("Are you sure you want to remove \(currentMerchant.name) from the list?", isPresented: $isPresentingConfirmationDialog) {
+                                Button("Confirm", role: .destructive) {
+                                    realmManager.deleteMerchant(id: currentMerchant.id)
+                                    // TODO: FKJ - Make currentMerchant optional and make it nil here.
+                                    currentMerchant = MerchantDto(name: "Test",
+                                                                 image: "Test image",
+                                                                 locations: nil,
+                                                                 scannedCode: nil,
+                                                                 typeOfCode: nil)
+                                }
+                                Button("Cancel", role: .cancel) { /* no-op */ }
+                            }
+                        
                     }
                 }
                 .navigationBarTitle("Dashboard", displayMode: .inline)
@@ -68,7 +79,7 @@ func generateCode(from string: String, codeType: String?) -> UIImage {
 
 struct Dashboard_Previews: PreviewProvider {
     static var previews: some View {
-        Dashboard()
+        Dashboard(tabSelection: Binding.constant(1))
             .environmentObject(RealmManager())
     }
 }

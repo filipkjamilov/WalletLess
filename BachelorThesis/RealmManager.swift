@@ -1,9 +1,4 @@
-//
-//  RealmManager.swift
-//  BachelorThesis
-//
 //  Created by Filip Kjamilov on 28.2.22.
-//
 
 import Foundation
 import RealmSwift
@@ -21,10 +16,10 @@ class RealmManager: ObservableObject {
     func openRealm() {
         do {
             
-//            let config = Realm.Configuration(schemaVersion: 1)
-//
-//            Realm.Configuration.defaultConfiguration = config
-//
+            let config = Realm.Configuration(schemaVersion: 1)
+
+            Realm.Configuration.defaultConfiguration = config
+
             localRealm = try Realm()
             
         } catch {
@@ -35,11 +30,9 @@ class RealmManager: ObservableObject {
     func addMerhant(name: String, image: String, locations: List<LocationsDto>, scannedCode: String, typeOfCode: CodeType) {
         if let localRealm = localRealm {
             do {
-                
-                let imageURL = URL(string: image)!
-                let downloadedImage = try Data(contentsOf: imageURL)
-                
                 try localRealm.write {
+                    let imageURL = URL(string: image)!
+                    let downloadedImage = try Data(contentsOf: imageURL)
                     let merchant = MerchantDto(value: ["name": name,
                                                        "downloadedImage": downloadedImage,
                                                        "image": image,
@@ -60,7 +53,7 @@ class RealmManager: ObservableObject {
         if let localRealm = localRealm {
             let allMerchants = localRealm.objects(MerchantDto.self)
             merchants = []
-            allMerchants.forEach { merchant in
+            allMerchants.filter({ !$0.isInvalidated }).forEach { merchant in
                 merchants.append(merchant)
             }
             

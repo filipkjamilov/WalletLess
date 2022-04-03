@@ -1,13 +1,11 @@
-//
-//  Settings.swift
-//  BachelorThesis
-//
 //  Created by Filip Kjamilov on 27.2.22.
-//
 
 import SwiftUI
 
 struct Settings: View {
+    
+    @Binding var tabSelection: Int
+    
     var body: some View {
         ZStack {
             Color.blue
@@ -20,6 +18,6 @@ struct Settings: View {
 
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        Settings()
+        Settings(tabSelection: Binding.constant(3))
     }
 }

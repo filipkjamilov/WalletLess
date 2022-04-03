@@ -72,6 +72,7 @@ struct CardModifier: ViewModifier {
 struct Merchants: View {
     
     @EnvironmentObject var realmManager: RealmManager
+    @Binding var tabSelection: Int
     @ObservedObject private var viewModel = MerchantsViewModel()
     @State private var isPresentingScanner = false
     @State private var scannedCode: String?
@@ -110,6 +111,8 @@ struct Merchants: View {
                         // Make optional? Should never happen to be empty!
                         // If no merchant is added it will add a default one wrongly done!
                         
+                        tabSelection = 1
+                        
                         switch result.type {
                             case .code128:
                                 realmManager.addMerhant(name: currentMerchant.name,
@@ -131,10 +134,9 @@ struct Merchants: View {
                                                         typeOfCode: .unknown)
                         }
                         
-                        
-                        
                         scannedCode = result.string
                         isPresentingScanner = false
+                        
                     }
                 }
             }
@@ -144,7 +146,7 @@ struct Merchants: View {
 
 struct Merchants_Previews: PreviewProvider {
     static var previews: some View {
-        Merchants()
+        Merchants(tabSelection: Binding.constant(2))
             .environmentObject(RealmManager())
     }
 }
