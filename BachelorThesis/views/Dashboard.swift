@@ -1,5 +1,6 @@
 //  Created by Filip Kjamilov on 27.2.22.
 
+import CoreLocation
 import SwiftUI
 import RealmSwift
 

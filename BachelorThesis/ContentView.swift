@@ -10,6 +10,11 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             TabView(selection: $tabSelection) {
+                Location()
+                    .tabItem() {
+                        Image(systemName: "pin")
+                        Text("Location")
+                    }
                 Dashboard(tabSelection: $tabSelection)
                     .environmentObject(realmManager)
                     .tabItem() {
