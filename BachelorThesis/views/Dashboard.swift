@@ -3,6 +3,8 @@
 import CoreLocation
 import SwiftUI
 import RealmSwift
+import Combine
+import MapKit
 
 struct Dashboard: View {
     
@@ -11,6 +13,26 @@ struct Dashboard: View {
     @State private var isPresentingSheet = false
     @State private var isPresentingConfirmationDialog = false
     @State private var currentMerchant: MerchantDto = MerchantDto()
+    
+    // MARK: - Location properties
+    
+    @ObservedObject private var viewModel = LocationViewModel()
+    @State private var currentLocation = CLLocation.defaultLocation
+    @State private var cancellable: AnyCancellable?
+    
+    private func setCurrentLocation() {
+        cancellable = viewModel.$location.sink { location in
+            currentLocation = location ?? CLLocation()
+            
+//            self.realmManager.merchants.forEach { merchant in
+//
+//                merchant.locations.forEach { location in
+//                    
+//                }
+//            }
+            
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -49,6 +71,9 @@ struct Dashboard: View {
                 ModalView(isShowing: $isPresentingSheet, merchant: $currentMerchant)
             }
         }
+        .onAppear {
+            setCurrentLocation()
+        }
     }
 }
 
@@ -69,6 +94,50 @@ func generateCode(from string: String, codeType: String?) -> UIImage {
     
     return UIImage(systemName: "xmark") ?? UIImage()
 }
+
+final class LocationViewModel: NSObject, ObservableObject {
+    
+    @Published var location: CLLocation?
+    let locationManager = CLLocationManager()
+    
+    override init() {
+        super.init()
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        locationManager.delegate = self
+    }
+    
+}
+
+extension LocationViewModel: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let currentLocation = locations.last else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.location = currentLocation
+//            print(currentLocation.coordinate)
+            
+        }
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
+    
+}
+
+extension CLLocation {
+    
+    static var defaultLocation: CLLocation {
+        CLLocation.init(latitude: 29.726819, longitude: -95.393692)
+    }
+    
+}
+
 
 struct Dashboard_Previews: PreviewProvider {
     static var previews: some View {

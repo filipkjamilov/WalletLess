@@ -4,6 +4,7 @@ import RealmSwift
 import Foundation
 import AVFoundation
 import UIKit
+import CoreLocation
 
 public enum CodeType: String, PersistableEnum {
     
@@ -21,6 +22,7 @@ class MerchantDto: Object, ObjectKeyIdentifiable {
     @Persisted var locations: List<LocationsDto>
     @Persisted var scannedCode: String?
     @Persisted var typeOfCode: CodeType? = .unknown
+    @Persisted var distance: CLLocationDistance?
     
     public func getName() -> String {
         return name

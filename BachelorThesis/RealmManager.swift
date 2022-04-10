@@ -15,13 +15,9 @@ class RealmManager: ObservableObject {
     
     func openRealm() {
         do {
-            
             let config = Realm.Configuration(schemaVersion: 1)
-
             Realm.Configuration.defaultConfiguration = config
-
             localRealm = try Realm()
-            
         } catch {
             print("Error opening Realm: \(error)")
         }
