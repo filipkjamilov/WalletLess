@@ -11,27 +11,6 @@ class MerchantsViewModel: ObservableObject {
     @Published var merchants = [MerchantDto]()
     let databaseName: String = "AllCards"
     
-//    func fetchData() {
-//        let database = Database.database().reference().child(databaseName)
-//
-//        database.observe(.value, with: { snap in
-//
-//            guard let dict = snap.value as? [String:Any] else {
-//                return
-//            }
-//
-//            self.merchants = dict.map { card in
-//                let card = card.value as? [String: Any]
-//
-//                let name = card?["cardName"] as? String ?? ""
-//                let image = card?["cardImage"] as? String ?? ""
-//                let locations = card?["locations"] as? [String: [String: Any]]
-//
-//                return MerchantDto(name: name, image: image, locations: locations)
-//            }
-//        })
-//    }
-    
     func fetchDataIfNeeded() {
         let database = Database.database().reference().child(databaseName)
         
@@ -48,8 +27,6 @@ class MerchantsViewModel: ObservableObject {
                     let name = card?["cardName"] as? String ?? ""
                     let image = card?["cardImage"] as? String ?? ""
                     let locations = card?["locations"] as? [String: [String: Any]]
-                    
-                    
 
                     return MerchantDto(name: name, image: image, locations: locations)
                 }
