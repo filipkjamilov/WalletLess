@@ -39,20 +39,6 @@ class MerchantDto: Object, ObjectKeyIdentifiable {
             }
         }
     }
-    
-    // TODO: FKJ - Remove unnecessary inits.
-    convenience init(name: String, image: String, locations: [String: Any]?, scannedCode: String?, typeOfCode: CodeType?) {
-        self.init()
-        self.name = name
-        self.image = image
-        if locations != nil {
-            locations?.forEach { location in
-                self.locations.append(LocationsDto(logitude: 22.2, latitude: 22.2))
-            }
-        }
-        self.scannedCode = scannedCode
-        self.typeOfCode = typeOfCode
-    }
 }
 
 class LocationsDto: Object, ObjectKeyIdentifiable {

@@ -10,11 +10,7 @@ struct Dashboard: View {
     @Binding var tabSelection: Int
     @State private var isPresentingSheet = false
     @State private var isPresentingConfirmationDialog = false
-    @State private var currentMerchant: MerchantDto = MerchantDto(name: "Test",
-                                                                  image: "Test image",
-                                                                  locations: nil,
-                                                                  scannedCode: nil,
-                                                                  typeOfCode: nil)
+    @State private var currentMerchant: MerchantDto = MerchantDto()
     
     var body: some View {
         NavigationView {
@@ -41,11 +37,7 @@ struct Dashboard: View {
                                 Button("Confirm", role: .destructive) {
                                     realmManager.deleteMerchant(id: currentMerchant.id)
                                     // TODO: FKJ - Make currentMerchant optional and make it nil here.
-                                    currentMerchant = MerchantDto(name: "Test",
-                                                                 image: "Test image",
-                                                                 locations: nil,
-                                                                 scannedCode: nil,
-                                                                 typeOfCode: nil)
+                                    currentMerchant = MerchantDto()
                                 }
                                 Button("Cancel", role: .cancel) { /* no-op */ }
                             }

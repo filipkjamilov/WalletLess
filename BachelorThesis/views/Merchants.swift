@@ -13,16 +13,16 @@ class MerchantsViewModel: ObservableObject {
     
 //    func fetchData() {
 //        let database = Database.database().reference().child(databaseName)
-//        
+//
 //        database.observe(.value, with: { snap in
-//            
+//
 //            guard let dict = snap.value as? [String:Any] else {
 //                return
 //            }
-//            
+//
 //            self.merchants = dict.map { card in
 //                let card = card.value as? [String: Any]
-//        
+//
 //                let name = card?["cardName"] as? String ?? ""
 //                let image = card?["cardImage"] as? String ?? ""
 //                let locations = card?["locations"] as? [String: [String: Any]]
@@ -76,11 +76,7 @@ struct Merchants: View {
     @ObservedObject private var viewModel = MerchantsViewModel()
     @State private var isPresentingScanner = false
     @State private var scannedCode: String?
-    @State private var currentMerchant: MerchantDto = MerchantDto(name: "Test",
-                                                                  image: "Test image",
-                                                                  locations: nil,
-                                                                  scannedCode: nil,
-                                                                  typeOfCode: nil)
+    @State private var currentMerchant: MerchantDto = MerchantDto()
     
     @State private var searchText = ""
     
