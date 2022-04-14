@@ -6,7 +6,7 @@ import UIKit
 
 class RealmManager: ObservableObject {
     private(set) var localRealm: Realm?
-    @Published private(set) var merchants: [MerchantDto] = []
+    @Published var merchants: [MerchantDto] = []
     
     init() {
         openRealm()

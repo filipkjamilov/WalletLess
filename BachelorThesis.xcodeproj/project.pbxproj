@@ -11,7 +11,6 @@
 		0245CE5E27B30E0400DFBF8A /* CodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245CE5D27B30E0400DFBF8A /* CodeScanner.swift */; };
 		0245CE6027B3123200DFBF8A /* ScannerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245CE5F27B3123200DFBF8A /* ScannerCoordinator.swift */; };
 		0245CE6227B317C400DFBF8A /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245CE6127B317C400DFBF8A /* ScannerViewController.swift */; };
-		025F90832801C3E400B28508 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025F90822801C3E400B28508 /* Location.swift */; };
 		02763D7B27CB8B070036F41A /* Merchants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D7A27CB8B070036F41A /* Merchants.swift */; };
 		02763D7D27CB8B1C0036F41A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D7C27CB8B1C0036F41A /* Settings.swift */; };
 		02763D7F27CB8B240036F41A /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D7E27CB8B240036F41A /* Dashboard.swift */; };
@@ -55,7 +54,6 @@
 		0245CE5D27B30E0400DFBF8A /* CodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScanner.swift; sourceTree = "<group>"; };
 		0245CE5F27B3123200DFBF8A /* ScannerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerCoordinator.swift; sourceTree = "<group>"; };
 		0245CE6127B317C400DFBF8A /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
-		025F90822801C3E400B28508 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		02763D7A27CB8B070036F41A /* Merchants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchants.swift; sourceTree = "<group>"; };
 		02763D7C27CB8B1C0036F41A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		02763D7E27CB8B240036F41A /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 				02763D8027CB8C200036F41A /* ScannerView.swift */,
 				02763D9227CC1A660036F41A /* MerchantImageNameCardView.swift */,
 				022EA28627DFA7F50047F58F /* ModalView.swift */,
-				025F90822801C3E400B28508 /* Location.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -345,7 +342,6 @@
 				0245CE6027B3123200DFBF8A /* ScannerCoordinator.swift in Sources */,
 				022EA28727DFA7F50047F58F /* ModalView.swift in Sources */,
 				02763D7F27CB8B240036F41A /* Dashboard.swift in Sources */,
-				025F90832801C3E400B28508 /* Location.swift in Sources */,
 				02FC101027CD665C00AF3EEB /* RealmManager.swift in Sources */,
 				02E932AF27344DCA0059D1CF /* ContentView.swift in Sources */,
 				0245CE6227B317C400DFBF8A /* ScannerViewController.swift in Sources */,

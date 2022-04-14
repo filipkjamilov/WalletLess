@@ -22,7 +22,7 @@ class MerchantDto: Object, ObjectKeyIdentifiable {
     @Persisted var locations: List<LocationsDto>
     @Persisted var scannedCode: String?
     @Persisted var typeOfCode: CodeType? = .unknown
-    @Persisted var distance: CLLocationDistance?
+    @Persisted var distance: CLLocationDistance = .greatestFiniteMagnitude
     
     public func getName() -> String {
         return name
@@ -35,9 +35,9 @@ class MerchantDto: Object, ObjectKeyIdentifiable {
         self.image = image
         if locations != nil {
             locations?.forEach { location in
-                let longitude = location.value["longitude"] as? Double ?? 0.00
                 let latitude = location.value["latitude"] as? Double ?? 0.00
-                self.locations.append(LocationsDto(logitude: longitude, latitude: latitude))
+                let longitude = location.value["longitude"] as? Double ?? 0.00
+                self.locations.append(LocationsDto(longitude: longitude, latitude: latitude))
             }
         }
     }
@@ -50,7 +50,7 @@ class LocationsDto: Object, ObjectKeyIdentifiable {
     
     @Persisted(originProperty: "locations") var assignee: LinkingObjects<MerchantDto>
     
-    convenience init(logitude: Double, latitude: Double) {
+    convenience init(longitude: Double, latitude: Double) {
         self.init()
         self.longitude = longitude
         self.latitude = latitude
