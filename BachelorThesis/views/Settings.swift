@@ -7,11 +7,21 @@ struct Settings: View {
     @Binding var tabSelection: Int
     
     var body: some View {
-        ZStack {
-            Color.blue
-            Image(systemName: "slider.horizontal.3")
-                .foregroundColor(Color.white)
-                .font(.system(size: 100.0))
+        NavigationView {
+            ZStack {
+                Image(systemName: "slider.horizontal.3")
+                    .foregroundColor(Color.white)
+                    .font(.system(size: 100.0))
+                
+            }
+            .navigationBarTitle("Settings", displayMode: .large)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(
+                Image("background")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea(.all)
+            )
         }
     }
 }

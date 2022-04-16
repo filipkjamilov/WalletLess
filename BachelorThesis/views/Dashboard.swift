@@ -79,10 +79,17 @@ struct Dashboard: View {
                             }
                     }
                 }
-                .navigationBarTitle("Dashboard", displayMode: .inline)
                 // Modal view for showing the card details
                 ModalView(isShowing: $isPresentingSheet, merchant: $currentMerchant)
             }
+            .navigationBarTitle("Dashboard", displayMode: .inline)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(
+                Image("background")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea(.all)
+            )
         }
         .onAppear {
             /// Start observing location when user is on `Dashboard`.
@@ -147,5 +154,17 @@ struct Dashboard_Previews: PreviewProvider {
     static var previews: some View {
         Dashboard(tabSelection: Binding.constant(1))
             .environmentObject(RealmManager())
+    }
+}
+
+// TODO: FKJ - ADD this to View+Extenstions file
+public extension View {
+    func fullBackground(imageName: String) -> some View {
+       return background(
+                Image(imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+       )
     }
 }

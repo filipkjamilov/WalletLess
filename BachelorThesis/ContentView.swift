@@ -6,6 +6,12 @@ struct ContentView: View {
     
     @StateObject var realmManager = RealmManager()
     @State private var tabSelection = 1
+    let appearance: UITabBarAppearance = UITabBarAppearance()
+
+    init() {
+        UITabBar.appearance().scrollEdgeAppearance = appearance
+        UITabBar.appearance().backgroundColor = UIColor(Color.secondary)
+    }
     
     var body: some View {
         ZStack {

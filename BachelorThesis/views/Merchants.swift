@@ -72,8 +72,6 @@ struct Merchants: View {
                 Spacer()
             }
             .searchable(text: $searchText)
-            .navigationBarTitle("Merchants", displayMode: .inline)
-//            .navigationBarHidden(true)
             .onAppear() {
                 self.viewModel.fetchDataIfNeeded()
             }
@@ -113,6 +111,14 @@ struct Merchants: View {
                     }
                 }
             }
+            .navigationBarTitle("Merchants", displayMode: .inline)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(
+                Image("background")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea(.all)
+            )
         }
     }
 }
