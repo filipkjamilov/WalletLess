@@ -1,9 +1,4 @@
-//
-//  File.swift
-//  BachelorThesis
-//
 //  Created by Filip Kjamilov on 8.2.22.
-//
 
 import AVFoundation
 import SwiftUI

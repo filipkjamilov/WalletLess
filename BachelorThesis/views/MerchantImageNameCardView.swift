@@ -26,11 +26,10 @@ struct MerchantImageNameCardView: View {
         }
         .frame(minWidth: 0,
                maxWidth: .infinity,
-               minHeight: 100,
-               maxHeight: 100,
                alignment: .topLeading)
         .background(.secondary)
         .modifier(CardModifier())
-        .padding(.all, 1)
+        .padding(.leading, 5)
+        .padding(.trailing, 5)
     }
 }

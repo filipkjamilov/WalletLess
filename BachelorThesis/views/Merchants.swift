@@ -23,11 +23,11 @@ class MerchantsViewModel: ObservableObject {
             if dict.count > self.merchants.count {
                 self.merchants = dict.map { card in
                     let card = card.value as? [String: Any]
-            
+                    
                     let name = card?["cardName"] as? String ?? ""
                     let image = card?["cardImage"] as? String ?? ""
                     let locations = card?["locations"] as? [String: [String: Any]]
-
+                    
                     return MerchantDto(name: name, image: image, locations: locations)
                 }
             }
@@ -64,9 +64,9 @@ struct Merchants: View {
                 ForEach(viewModel.merchants.filter({ $0.name.contains(searchText) || searchText.isEmpty }), id: \.id) { merchant in
                     MerchantImageNameCardView(merchant: merchant)
                         .onTapGesture {
-                        isPresentingScanner = true
-                        self.currentMerchant = merchant
-                    }
+                            isPresentingScanner = true
+                            self.currentMerchant = merchant
+                        }
                 }
                 // This pins the VStack to top of the screen.
                 Spacer()
@@ -78,31 +78,31 @@ struct Merchants: View {
             .sheet(isPresented: $isPresentingScanner) {
                 CodeScannerView(codeTypes: [.qr, .code128]) { response in
                     if case let .success(result) = response {
-                                            
+                        
                         // Make optional? Should never happen to be empty!
                         // If no merchant is added it will add a default one wrongly done!
                         
                         tabSelection = 1
                         
                         switch result.type {
-                            case .code128:
-                                realmManager.addMerhant(name: currentMerchant.name,
-                                                        image: currentMerchant.image,
-                                                        locations: currentMerchant.locations,
-                                                        scannedCode: result.string,
-                                                        typeOfCode: .CICode128BarcodeGenerator)
-                            case .qr:
-                                realmManager.addMerhant(name: currentMerchant.name,
-                                                        image: currentMerchant.image,
-                                                        locations: currentMerchant.locations,
-                                                        scannedCode: result.string,
-                                                        typeOfCode: .CIQRCodeGenerator)
-                            default:
-                                realmManager.addMerhant(name: currentMerchant.name,
-                                                        image: currentMerchant.image,
-                                                        locations: currentMerchant.locations,
-                                                        scannedCode: result.string,
-                                                        typeOfCode: .unknown)
+                        case .code128:
+                            realmManager.addMerhant(name: currentMerchant.name,
+                                                    image: currentMerchant.image,
+                                                    locations: currentMerchant.locations,
+                                                    scannedCode: result.string,
+                                                    typeOfCode: .CICode128BarcodeGenerator)
+                        case .qr:
+                            realmManager.addMerhant(name: currentMerchant.name,
+                                                    image: currentMerchant.image,
+                                                    locations: currentMerchant.locations,
+                                                    scannedCode: result.string,
+                                                    typeOfCode: .CIQRCodeGenerator)
+                        default:
+                            realmManager.addMerhant(name: currentMerchant.name,
+                                                    image: currentMerchant.image,
+                                                    locations: currentMerchant.locations,
+                                                    scannedCode: result.string,
+                                                    typeOfCode: .unknown)
                         }
                         
                         scannedCode = result.string

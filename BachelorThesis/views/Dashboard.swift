@@ -38,7 +38,7 @@ struct Dashboard: View {
                             let distance = currentLocation
                                 .distance(from: CLLocation(latitude: merchantLocation.latitude,
                                                            longitude: merchantLocation.longitude))
-                                                        
+                            
                             if merchant.distance > distance { merchant.distance = distance }
                         }
                     }
@@ -59,8 +59,9 @@ struct Dashboard: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .cornerRadius(15)
-                            .padding(.top, 10)
-                            .padding(.bottom, 10)
+                            .padding(.all, 3)
+                            .padding(.leading, 7)
+                            .padding(.trailing, 7)
                             .listRowInsets(.init())
                             .onTapGesture {
                                 currentMerchant = merchant
@@ -154,17 +155,5 @@ struct Dashboard_Previews: PreviewProvider {
     static var previews: some View {
         Dashboard(tabSelection: Binding.constant(1))
             .environmentObject(RealmManager())
-    }
-}
-
-// TODO: FKJ - ADD this to View+Extenstions file
-public extension View {
-    func fullBackground(imageName: String) -> some View {
-       return background(
-                Image(imageName)
-                    .resizable()
-                    .scaledToFill()
-                    .edgesIgnoringSafeArea(.all)
-       )
     }
 }
