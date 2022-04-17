@@ -5,6 +5,7 @@ import Foundation
 import FirebaseFirestore
 import Firebase
 import RealmSwift
+import CodeScanner
 
 class MerchantsViewModel: ObservableObject {
     
@@ -57,6 +58,31 @@ struct Merchants: View {
     
     @State private var searchText = ""
     
+    fileprivate func mapScannedCode(with result: (ScanResult)) {
+        switch result.type {
+        case .code128:
+            realmManager.addMerhant(name: currentMerchant.name,
+                                    image: currentMerchant.image,
+                                    locations: currentMerchant.locations,
+                                    scannedCode: result.string,
+                                    typeOfCode: .CICode128BarcodeGenerator)
+        case .qr:
+            realmManager.addMerhant(name: currentMerchant.name,
+                                    image: currentMerchant.image,
+                                    locations: currentMerchant.locations,
+                                    scannedCode: result.string,
+                                    typeOfCode: .CIQRCodeGenerator)
+        default:
+            realmManager.addMerhant(name: currentMerchant.name,
+                                    image: currentMerchant.image,
+                                    locations: currentMerchant.locations,
+                                    scannedCode: result.string,
+                                    typeOfCode: .unknown)
+        }
+        
+        scannedCode = result.string
+    }
+    
     var body: some View {
         
         NavigationView {
@@ -76,38 +102,15 @@ struct Merchants: View {
                 self.viewModel.fetchDataIfNeeded()
             }
             .sheet(isPresented: $isPresentingScanner) {
+                
                 CodeScannerView(codeTypes: [.qr, .code128]) { response in
                     if case let .success(result) = response {
-                        
-                        // Make optional? Should never happen to be empty!
-                        // If no merchant is added it will add a default one wrongly done!
-                        
+                        // Go to dashboard
                         tabSelection = 1
-                        
-                        switch result.type {
-                        case .code128:
-                            realmManager.addMerhant(name: currentMerchant.name,
-                                                    image: currentMerchant.image,
-                                                    locations: currentMerchant.locations,
-                                                    scannedCode: result.string,
-                                                    typeOfCode: .CICode128BarcodeGenerator)
-                        case .qr:
-                            realmManager.addMerhant(name: currentMerchant.name,
-                                                    image: currentMerchant.image,
-                                                    locations: currentMerchant.locations,
-                                                    scannedCode: result.string,
-                                                    typeOfCode: .CIQRCodeGenerator)
-                        default:
-                            realmManager.addMerhant(name: currentMerchant.name,
-                                                    image: currentMerchant.image,
-                                                    locations: currentMerchant.locations,
-                                                    scannedCode: result.string,
-                                                    typeOfCode: .unknown)
-                        }
-                        
-                        scannedCode = result.string
+                        // Map the scanned code (barcode/qrcode)
+                        mapScannedCode(with: result)
+                        // Dissmis scanner view
                         isPresentingScanner = false
-                        
                     }
                 }
             }

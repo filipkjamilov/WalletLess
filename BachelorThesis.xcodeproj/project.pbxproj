@@ -8,19 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		022EA28727DFA7F50047F58F /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022EA28627DFA7F50047F58F /* ModalView.swift */; };
-		0245CE5E27B30E0400DFBF8A /* CodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245CE5D27B30E0400DFBF8A /* CodeScanner.swift */; };
-		0245CE6027B3123200DFBF8A /* ScannerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245CE5F27B3123200DFBF8A /* ScannerCoordinator.swift */; };
-		0245CE6227B317C400DFBF8A /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245CE6127B317C400DFBF8A /* ScannerViewController.swift */; };
 		02763D7B27CB8B070036F41A /* Merchants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D7A27CB8B070036F41A /* Merchants.swift */; };
 		02763D7D27CB8B1C0036F41A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D7C27CB8B1C0036F41A /* Settings.swift */; };
 		02763D7F27CB8B240036F41A /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D7E27CB8B240036F41A /* Dashboard.swift */; };
-		02763D8127CB8C200036F41A /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D8027CB8C200036F41A /* ScannerView.swift */; };
 		02763D8427CB9AA90036F41A /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 02763D8327CB9AA90036F41A /* FirebaseAnalytics */; };
 		02763D8627CB9AA90036F41A /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 02763D8527CB9AA90036F41A /* FirebaseDatabase */; };
 		02763D8827CB9AA90036F41A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 02763D8727CB9AA90036F41A /* FirebaseFirestore */; };
 		02763D8D27CB9C100036F41A /* Merchant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D8C27CB9C100036F41A /* Merchant.swift */; };
 		02763D9127CBB6330036F41A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02763D9027CBB6330036F41A /* GoogleService-Info.plist */; };
 		02763D9327CC1A660036F41A /* MerchantImageNameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D9227CC1A660036F41A /* MerchantImageNameCardView.swift */; };
+		02E3ACC9280CAC2500888017 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 02E3ACC8280CAC2500888017 /* CodeScanner */; };
 		02E932AD27344DCA0059D1CF /* BachelorThesisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E932AC27344DCA0059D1CF /* BachelorThesisApp.swift */; };
 		02E932AF27344DCA0059D1CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E932AE27344DCA0059D1CF /* ContentView.swift */; };
 		02E932B127344DCC0059D1CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02E932B027344DCC0059D1CF /* Assets.xcassets */; };
@@ -51,13 +48,9 @@
 
 /* Begin PBXFileReference section */
 		022EA28627DFA7F50047F58F /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
-		0245CE5D27B30E0400DFBF8A /* CodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScanner.swift; sourceTree = "<group>"; };
-		0245CE5F27B3123200DFBF8A /* ScannerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerCoordinator.swift; sourceTree = "<group>"; };
-		0245CE6127B317C400DFBF8A /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		02763D7A27CB8B070036F41A /* Merchants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchants.swift; sourceTree = "<group>"; };
 		02763D7C27CB8B1C0036F41A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		02763D7E27CB8B240036F41A /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
-		02763D8027CB8C200036F41A /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		02763D8C27CB9C100036F41A /* Merchant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchant.swift; sourceTree = "<group>"; };
 		02763D9027CBB6330036F41A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		02763D9227CC1A660036F41A /* MerchantImageNameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantImageNameCardView.swift; sourceTree = "<group>"; };
@@ -83,6 +76,7 @@
 				02763D8627CB9AA90036F41A /* FirebaseDatabase in Frameworks */,
 				02763D8427CB9AA90036F41A /* FirebaseAnalytics in Frameworks */,
 				02763D8827CB9AA90036F41A /* FirebaseFirestore in Frameworks */,
+				02E3ACC9280CAC2500888017 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,23 +97,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0245CE5C27B30DEE00DFBF8A /* cameraUtil */ = {
-			isa = PBXGroup;
-			children = (
-				0245CE5D27B30E0400DFBF8A /* CodeScanner.swift */,
-				0245CE5F27B3123200DFBF8A /* ScannerCoordinator.swift */,
-				0245CE6127B317C400DFBF8A /* ScannerViewController.swift */,
-			);
-			path = cameraUtil;
-			sourceTree = "<group>";
-		};
 		02763D7527CB8AB80036F41A /* views */ = {
 			isa = PBXGroup;
 			children = (
 				02763D7E27CB8B240036F41A /* Dashboard.swift */,
 				02763D7A27CB8B070036F41A /* Merchants.swift */,
 				02763D7C27CB8B1C0036F41A /* Settings.swift */,
-				02763D8027CB8C200036F41A /* ScannerView.swift */,
 				02763D9227CC1A660036F41A /* MerchantImageNameCardView.swift */,
 				022EA28627DFA7F50047F58F /* ModalView.swift */,
 			);
@@ -159,7 +142,6 @@
 			children = (
 				02763D8927CB9BCF0036F41A /* Models */,
 				02763D7527CB8AB80036F41A /* views */,
-				0245CE5C27B30DEE00DFBF8A /* cameraUtil */,
 				02E932AC27344DCA0059D1CF /* BachelorThesisApp.swift */,
 				02E932AE27344DCA0059D1CF /* ContentView.swift */,
 				02E932B027344DCC0059D1CF /* Assets.xcassets */,
@@ -216,6 +198,7 @@
 				02763D8527CB9AA90036F41A /* FirebaseDatabase */,
 				02763D8727CB9AA90036F41A /* FirebaseFirestore */,
 				02FC100D27CD5B7B00AF3EEB /* RealmSwift */,
+				02E3ACC8280CAC2500888017 /* CodeScanner */,
 			);
 			productName = BachelorThesis;
 			productReference = 02E932A927344DCA0059D1CF /* BachelorThesis.app */;
@@ -292,6 +275,7 @@
 			packageReferences = (
 				02763D8227CB9AA90036F41A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				02FC100C27CD5B7B00AF3EEB /* XCRemoteSwiftPackageReference "realm-swift" */,
+				02E3ACC7280CAC2500888017 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = 02E932AA27344DCA0059D1CF /* Products */;
 			projectDirPath = "";
@@ -336,15 +320,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02763D8127CB8C200036F41A /* ScannerView.swift in Sources */,
-				0245CE5E27B30E0400DFBF8A /* CodeScanner.swift in Sources */,
 				02763D9327CC1A660036F41A /* MerchantImageNameCardView.swift in Sources */,
-				0245CE6027B3123200DFBF8A /* ScannerCoordinator.swift in Sources */,
 				022EA28727DFA7F50047F58F /* ModalView.swift in Sources */,
 				02763D7F27CB8B240036F41A /* Dashboard.swift in Sources */,
 				02FC101027CD665C00AF3EEB /* RealmManager.swift in Sources */,
 				02E932AF27344DCA0059D1CF /* ContentView.swift in Sources */,
-				0245CE6227B317C400DFBF8A /* ScannerViewController.swift in Sources */,
 				02763D7D27CB8B1C0036F41A /* Settings.swift in Sources */,
 				02E932AD27344DCA0059D1CF /* BachelorThesisApp.swift in Sources */,
 				02763D7B27CB8B070036F41A /* Merchants.swift in Sources */,
@@ -713,6 +693,15 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		02E3ACC7280CAC2500888017 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = versionRange;
+				maximumVersion = 3.0.0;
+				minimumVersion = 2.0.0;
+			};
+		};
 		02FC100C27CD5B7B00AF3EEB /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift";
@@ -738,6 +727,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 02763D8227CB9AA90036F41A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		02E3ACC8280CAC2500888017 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02E3ACC7280CAC2500888017 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
 		};
 		02FC100D27CD5B7B00AF3EEB /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
