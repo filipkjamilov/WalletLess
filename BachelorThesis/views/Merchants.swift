@@ -6,6 +6,7 @@ import FirebaseFirestore
 import Firebase
 import RealmSwift
 import CodeScanner
+import MessageUI
 
 class MerchantsViewModel: ObservableObject {
     
@@ -32,11 +33,8 @@ class MerchantsViewModel: ObservableObject {
                     return MerchantDto(name: name, image: image, locations: locations)
                 }
             }
-            
-            
         })
     }
-    
 }
 
 struct CardModifier: ViewModifier {
@@ -53,10 +51,71 @@ struct Merchants: View {
     @Binding var tabSelection: Int
     @ObservedObject private var viewModel = MerchantsViewModel()
     @State private var isPresentingScanner = false
+    @State private var isPresentingMailView = false
     @State private var scannedCode: String?
     @State private var currentMerchant: MerchantDto = MerchantDto()
+    @State var result: Result<MFMailComposeResult, Error>? = nil
     
     @State private var searchText = ""
+    
+    
+    var body: some View {
+        NavigationView {
+            ScrollView() {
+                Button() {
+                    presentMailSheet()
+                } label: {
+                    Text("Request a new merchant")
+                }
+                ForEach(viewModel.merchants.filter({ $0.name.contains(searchText) || searchText.isEmpty }), id: \.id) { merchant in
+                    MerchantImageNameCardView(merchant: merchant)
+                        .onTapGesture {
+                            isPresentingScanner = true
+                            self.currentMerchant = merchant
+                        }
+                }
+                // This pins the VStack to top of the screen.
+                Spacer()
+            }
+            .searchable(text: $searchText)
+            .onAppear() {
+                self.viewModel.fetchDataIfNeeded()
+            }
+            .sheet(isPresented: $isPresentingScanner) {
+                CodeScannerView(codeTypes: [.qr, .code128]) { response in
+                    if case let .success(result) = response {
+                        // Go to dashboard
+                        tabSelection = 1
+                        // Map the scanned code (barcode/qrcode)
+                        mapScannedCode(with: result)
+                        // Dismiss scanner view
+                        isPresentingScanner = false
+                    }
+                }
+            }
+            .sheet(isPresented: $isPresentingMailView) {
+                MailView(result: $result, newSubject: "Requesting a new merchant", newMessageBody: "Dear Walletless, I would like to report the following...")
+            }
+            .navigationBarTitle("Merchants", displayMode: .inline)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(
+                Image("background")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea(.all)
+            )
+        }
+    }
+    
+    // MARK: -
+    
+    private func presentMailSheet() {
+        if MFMailComposeViewController.canSendMail() {
+            self.isPresentingMailView = true
+        } else {
+            print("Present alert that mail sending is not possible")
+        }
+    }
     
     fileprivate func mapScannedCode(with result: (ScanResult)) {
         switch result.type {
@@ -81,48 +140,6 @@ struct Merchants: View {
         }
         
         scannedCode = result.string
-    }
-    
-    var body: some View {
-        
-        NavigationView {
-            ScrollView() {
-                ForEach(viewModel.merchants.filter({ $0.name.contains(searchText) || searchText.isEmpty }), id: \.id) { merchant in
-                    MerchantImageNameCardView(merchant: merchant)
-                        .onTapGesture {
-                            isPresentingScanner = true
-                            self.currentMerchant = merchant
-                        }
-                }
-                // This pins the VStack to top of the screen.
-                Spacer()
-            }
-            .searchable(text: $searchText)
-            .onAppear() {
-                self.viewModel.fetchDataIfNeeded()
-            }
-            .sheet(isPresented: $isPresentingScanner) {
-                
-                CodeScannerView(codeTypes: [.qr, .code128]) { response in
-                    if case let .success(result) = response {
-                        // Go to dashboard
-                        tabSelection = 1
-                        // Map the scanned code (barcode/qrcode)
-                        mapScannedCode(with: result)
-                        // Dissmis scanner view
-                        isPresentingScanner = false
-                    }
-                }
-            }
-            .navigationBarTitle("Merchants", displayMode: .inline)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(
-                Image("background")
-                    .resizable()
-                    .scaledToFill()
-                    .ignoresSafeArea(.all)
-            )
-        }
     }
 }
 
