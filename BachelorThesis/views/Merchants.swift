@@ -50,6 +50,7 @@ struct Merchants: View {
     @EnvironmentObject var realmManager: RealmManager
     @Binding var tabSelection: Int
     @ObservedObject private var viewModel = MerchantsViewModel()
+    @ObservedObject private var networkManger = NetworkManager()
     @State private var isPresentingScanner = false
     @State private var isPresentingMailView = false
     @State private var scannedCode: String?
@@ -61,49 +62,81 @@ struct Merchants: View {
     
     var body: some View {
         NavigationView {
-            ScrollView() {
-                Button() {
-                    presentMailSheet()
-                } label: {
-                    Text("Request a new merchant")
-                }
-                ForEach(viewModel.merchants.filter({ $0.name.contains(searchText) || searchText.isEmpty }), id: \.id) { merchant in
-                    MerchantImageNameCardView(merchant: merchant)
-                        .onTapGesture {
-                            isPresentingScanner = true
-                            self.currentMerchant = merchant
+            ZStack {
+                ScrollView() {
+                    if networkManger.isConnected {
+                        ForEach(viewModel.merchants.filter({ $0.name.contains(searchText) || searchText.isEmpty }), id: \.id) { merchant in
+                            MerchantImageNameCardView(merchant: merchant)
+                                .onTapGesture {
+                                    isPresentingScanner = true
+                                    self.currentMerchant = merchant
+                                }
                         }
+                        /// This pins the `MerchantImageNameCardView` to top of the screen.
+                        Spacer()
+                    } else {
+                        Image(systemName: "wifi.slash")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 200, height: 200)
+                            .foregroundColor(.primary)
+                        Text("Cannot establish connection!")
+                            .font(.system(size: 18))
+                            .foregroundColor(.primary)
+                            .padding()
+                    }
+                    
                 }
-                // This pins the VStack to top of the screen.
-                Spacer()
-            }
-            .searchable(text: $searchText)
-            .onAppear() {
-                self.viewModel.fetchDataIfNeeded()
-            }
-            .sheet(isPresented: $isPresentingScanner) {
-                CodeScannerView(codeTypes: [.qr, .code128]) { response in
-                    if case let .success(result) = response {
-                        // Go to dashboard
-                        tabSelection = 1
-                        // Map the scanned code (barcode/qrcode)
-                        mapScannedCode(with: result)
-                        // Dismiss scanner view
-                        isPresentingScanner = false
+                .searchable(text: $searchText)
+                .sheet(isPresented: $isPresentingScanner) {
+                    CodeScannerView(codeTypes: [.qr, .code128]) { response in
+                        if case let .success(result) = response {
+                            // Go to dashboard
+                            tabSelection = 1
+                            // Map the scanned code (barcode/qrcode)
+                            mapScannedCode(with: result)
+                            // Dismiss scanner view
+                            isPresentingScanner = false
+                        }
+                    }
+                }
+                .sheet(isPresented: $isPresentingMailView) {
+                    MailView(result: $result, newSubject: "Requesting a new merchant", newMessageBody: "Dear Walletless, I would like to report the following...")
+                }
+                .navigationBarTitle("Merchants", displayMode: .inline)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(
+                    Image("background")
+                        .resizable()
+                        .scaledToFill()
+                        .ignoresSafeArea(.all)
+                )
+                .onAppear() {
+                    self.viewModel.fetchDataIfNeeded()
+                }
+                
+                // Floating Button
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            presentMailSheet()
+                        }, label: {
+                            Image(systemName: "plus")
+                                .font(.title2)
+                                .frame(width: 50, height: 50)
+                                .background(networkManger.isConnected ? Color.blue : Color.gray)
+                                .clipShape(Circle())
+                                .foregroundColor(.white)
+                        })
+                            .padding()
+                            .shadow(radius: 2)
+                            .disabled(!networkManger.isConnected)
+                        
                     }
                 }
             }
-            .sheet(isPresented: $isPresentingMailView) {
-                MailView(result: $result, newSubject: "Requesting a new merchant", newMessageBody: "Dear Walletless, I would like to report the following...")
-            }
-            .navigationBarTitle("Merchants", displayMode: .inline)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(
-                Image("background")
-                    .resizable()
-                    .scaledToFill()
-                    .ignoresSafeArea(.all)
-            )
         }
     }
     

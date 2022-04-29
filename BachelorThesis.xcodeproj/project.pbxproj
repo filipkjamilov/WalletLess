@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		022EA28727DFA7F50047F58F /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022EA28627DFA7F50047F58F /* ModalView.swift */; };
+		0269DE17281AF99A00FC0E0A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0269DE16281AF99A00FC0E0A /* NetworkManager.swift */; };
 		02763D7B27CB8B070036F41A /* Merchants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D7A27CB8B070036F41A /* Merchants.swift */; };
 		02763D7D27CB8B1C0036F41A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D7C27CB8B1C0036F41A /* Settings.swift */; };
 		02763D7F27CB8B240036F41A /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D7E27CB8B240036F41A /* Dashboard.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		022EA28627DFA7F50047F58F /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		0269DE16281AF99A00FC0E0A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		02763D7A27CB8B070036F41A /* Merchants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchants.swift; sourceTree = "<group>"; };
 		02763D7C27CB8B1C0036F41A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		02763D7E27CB8B240036F41A /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
@@ -99,6 +101,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0269DE15281AF98800FC0E0A /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				02FC100F27CD665C00AF3EEB /* RealmManager.swift */,
+				0269DE16281AF99A00FC0E0A /* NetworkManager.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		02763D7527CB8AB80036F41A /* views */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +154,7 @@
 		02E932AB27344DCA0059D1CF /* BachelorThesis */ = {
 			isa = PBXGroup;
 			children = (
+				0269DE15281AF98800FC0E0A /* utils */,
 				02763D8927CB9BCF0036F41A /* Models */,
 				02763D7527CB8AB80036F41A /* views */,
 				02E932AC27344DCA0059D1CF /* BachelorThesisApp.swift */,
@@ -150,7 +162,6 @@
 				02E932B027344DCC0059D1CF /* Assets.xcassets */,
 				02763D9027CBB6330036F41A /* GoogleService-Info.plist */,
 				02E932B227344DCC0059D1CF /* Preview Content */,
-				02FC100F27CD665C00AF3EEB /* RealmManager.swift */,
 			);
 			path = BachelorThesis;
 			sourceTree = "<group>";
@@ -327,6 +338,7 @@
 				022EA28727DFA7F50047F58F /* ModalView.swift in Sources */,
 				02763D7F27CB8B240036F41A /* Dashboard.swift in Sources */,
 				02FC101027CD665C00AF3EEB /* RealmManager.swift in Sources */,
+				0269DE17281AF99A00FC0E0A /* NetworkManager.swift in Sources */,
 				02E932AF27344DCA0059D1CF /* ContentView.swift in Sources */,
 				02763D7D27CB8B1C0036F41A /* Settings.swift in Sources */,
 				02E932AD27344DCA0059D1CF /* BachelorThesisApp.swift in Sources */,

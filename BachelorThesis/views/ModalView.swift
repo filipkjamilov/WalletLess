@@ -44,7 +44,6 @@ struct ModalView: View {
     var mainView: some View {
         VStack {
             
-            
             ZStack {
                 Capsule()
                     .frame(width: 40, height: 6)
@@ -87,7 +86,7 @@ struct ModalView: View {
                 Rectangle()
                     .frame(height: curHeight / 2)
             }
-                .foregroundColor(.white)
+                .foregroundColor(Color(UIColor.systemBackground))
         )
         .animation(isDragging ? nil : .easeInOut(duration: 0.45))
         .onDisappear {
