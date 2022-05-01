@@ -6,11 +6,15 @@ struct ContentView: View {
     
     @StateObject var realmManager = RealmManager()
     @State private var tabSelection = 1
-    let appearance: UITabBarAppearance = UITabBarAppearance()
+    let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
+    let navigationBarAppearance: UINavigationBarAppearance = UINavigationBarAppearance()
 
     init() {
-        UITabBar.appearance().scrollEdgeAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         UITabBar.appearance().backgroundColor = UIColor(Color.secondary)
+        navigationBarAppearance.configureWithTransparentBackground()
+        navigationBarAppearance.backgroundColor = UIColor(Color.secondary.opacity(0.7))
+        UINavigationBar.appearance().standardAppearance = navigationBarAppearance
     }
     
     var body: some View {

@@ -63,18 +63,8 @@ struct Merchants: View {
     var body: some View {
         NavigationView {
             ZStack {
-                ScrollView() {
-                    if networkManger.isConnected {
-                        ForEach(viewModel.merchants.filter({ $0.name.contains(searchText) || searchText.isEmpty }), id: \.id) { merchant in
-                            MerchantImageNameCardView(merchant: merchant)
-                                .onTapGesture {
-                                    isPresentingScanner = true
-                                    self.currentMerchant = merchant
-                                }
-                        }
-                        /// This pins the `MerchantImageNameCardView` to top of the screen.
-                        Spacer()
-                    } else {
+                if !networkManger.isConnected {
+                    VStack {
                         Image(systemName: "wifi.slash")
                             .resizable()
                             .scaledToFit()
@@ -85,36 +75,36 @@ struct Merchants: View {
                             .foregroundColor(.primary)
                             .padding()
                     }
-                    
-                }
-                .searchable(text: $searchText)
-                .sheet(isPresented: $isPresentingScanner) {
-                    CodeScannerView(codeTypes: [.qr, .code128]) { response in
-                        if case let .success(result) = response {
-                            // Go to dashboard
-                            tabSelection = 1
-                            // Map the scanned code (barcode/qrcode)
-                            mapScannedCode(with: result)
-                            // Dismiss scanner view
-                            isPresentingScanner = false
+                } else {
+                    ScrollView() {
+                        ForEach(viewModel.merchants.filter({ $0.name.contains(searchText) || searchText.isEmpty }), id: \.id) { merchant in
+                            MerchantImageNameCardView(merchant: merchant)
+                                .onTapGesture {
+                                    isPresentingScanner = true
+                                    self.currentMerchant = merchant
+                                }
+                        }
+                        /// This pins the `MerchantImageNameCardView` to top of the screen.
+                        Spacer()
+                    }
+                    .searchable(text: $searchText)
+                    .sheet(isPresented: $isPresentingScanner) {
+                        CodeScannerView(codeTypes: [.qr, .code128]) { response in
+                            if case let .success(result) = response {
+                                // Go to dashboard
+                                tabSelection = 1
+                                // Map the scanned code (barcode/qrcode)
+                                mapScannedCode(with: result)
+                                // Dismiss scanner view
+                                isPresentingScanner = false
+                            }
                         }
                     }
+                    .sheet(isPresented: $isPresentingMailView) {
+                        MailView(result: $result, newSubject: "Requesting a new merchant", newMessageBody: "Dear Walletless, I would like to report the following...")
+                    }
                 }
-                .sheet(isPresented: $isPresentingMailView) {
-                    MailView(result: $result, newSubject: "Requesting a new merchant", newMessageBody: "Dear Walletless, I would like to report the following...")
-                }
-                .navigationBarTitle("Merchants", displayMode: .inline)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(
-                    Image("background")
-                        .resizable()
-                        .scaledToFill()
-                        .ignoresSafeArea(.all)
-                )
-                .onAppear() {
-                    self.viewModel.fetchDataIfNeeded()
-                }
-                
+
                 // Floating Button
                 VStack {
                     Spacer()
@@ -136,6 +126,14 @@ struct Merchants: View {
                         
                     }
                 }
+            }
+            .navigationBarTitle("Merchants", displayMode: .large)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(
+                GradientBackground()
+            )
+            .onAppear() {
+                self.viewModel.fetchDataIfNeeded()
             }
         }
     }

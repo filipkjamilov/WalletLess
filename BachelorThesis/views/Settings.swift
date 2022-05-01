@@ -15,6 +15,13 @@ struct Settings: View {
                     AboutTheAppView()
                 }
                 .listStyle(InsetGroupedListStyle())
+                .background(
+                    GradientBackground().ignoresSafeArea()
+                )
+                .onAppear {
+                    // Set the default to clear
+                    UITableView.appearance().backgroundColor = .clear
+                }
             }
             .navigationBarTitle("Settings", displayMode: .large)
         }
@@ -46,6 +53,7 @@ struct SupportView: View {
             }
         }
         .headerProminence(.increased)
+        .listRowBackground(Color.primary.opacity(0.1))
     }
 }
 
@@ -70,6 +78,7 @@ struct LegalPolicyView: View {
             }
         }
         .headerProminence(.increased)
+        .listRowBackground(Color.primary.opacity(0.1))
     }
 }
 
@@ -109,6 +118,7 @@ struct AboutTheAppView: View {
             }
         }
         .headerProminence(.increased)
+        .listRowBackground(Color.primary.opacity(0.1))
     }
 }
 

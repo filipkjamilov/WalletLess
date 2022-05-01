@@ -7,29 +7,153 @@ struct MerchantImageNameCardView: View {
     var merchant: MerchantDto
     
     var body: some View {
-        HStack(alignment: .center, spacing: 0) {
-            
-            AsyncImage(url: URL(string: merchant.image)) { image in
-                image.resizable()
-            } placeholder: {
-                ProgressView()
+        
+        
+        ZStack {
+            RoundedRectangle(cornerRadius: 30)
+                .fill(LinearGradient(colors: [Color.cyan.opacity(0.7), Color.purple.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing))
+                .frame(minWidth: 0,
+                       maxWidth: .infinity,
+                       minHeight: 120,
+                       maxHeight: 120,
+                       alignment: .topLeading)
+                .shadow(color: Color.secondary, radius: 25, x: -10, y: 10)
+            ZStack {
+                Circle()
+                    .fill(Color.primary.opacity(0.3))
+                    .frame(width: 40)
+                Image(systemName: "creditcard")
+                    .resizable()
+                    .frame(width: 20, height: 15)
+                    .foregroundColor(.white)
+            }.offset(x: 165, y: -25)
+
+            HStack {
+                AsyncImage(url: URL(string: merchant.image)) { image in
+                    image.resizable()
+                } placeholder: {
+                    ProgressView()
+                }
+                .aspectRatio(contentMode: .fit)
+                .frame(minWidth: 150, maxWidth: 150, minHeight: 110)
+                .cornerRadius(15)
+                .padding(.all, 7)
+                
+                Text(merchant.name)
+                    .font(.title2)
+                    .foregroundColor(.primary)
+                    .bold()
             }
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 120)
-            .cornerRadius(15)
-            .padding(.all, 10)
-            
-            Text(merchant.name)
-                .font(.system(size: 26, weight: .bold, design: .default))
-                .padding(.trailing, 10)
-                .foregroundColor(.primary)
+            .frame(minWidth: 0,
+                   maxWidth: .infinity,
+                   alignment: .topLeading)
+            .padding(.leading, 10)
         }
-        .frame(minWidth: 0,
-               maxWidth: .infinity,
-               alignment: .topLeading)
-        .background(.secondary)
-        .modifier(CardModifier())
         .padding(.leading, 5)
         .padding(.trailing, 5)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//        ZStack {
+//
+//            CardGradientBackground()
+//                .frame(minWidth: 0,
+//                       maxWidth: .infinity,
+//                       minHeight: 150,
+//                       maxHeight: 300,
+//                       alignment: .topLeading)
+//                .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+//                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 10)
+//
+//            Text(merchant.name)
+//                .font(.system(size: 26, weight: .bold, design: .default))
+//                .padding(.trailing, 10)
+//                .foregroundColor(.primary)
+//
+//            AsyncImage(url: URL(string: merchant.image)) { image in
+//                image.resizable()
+//            } placeholder: {
+//                ProgressView()
+//            }
+//            .aspectRatio(contentMode: .fit)
+//            .frame(minWidth: 150, maxWidth: 150, minHeight: 110)
+//            .cornerRadius(15)
+//            .padding(.all, 10)
+//
+//        }.padding()
+        
+        
+        
+        
+        //        HStack(alignment: .center, spacing: 0) {
+        //
+        //            AsyncImage(url: URL(string: merchant.image)) { image in
+        //                image.resizable()
+        //            } placeholder: {
+        //                ProgressView()
+        //            }
+        //            .aspectRatio(contentMode: .fit)
+        //            .frame(minWidth: 150, maxWidth: 150, minHeight: 110)
+        //            .cornerRadius(15)
+        //            .padding(.all, 10)
+        //
+        //            Text(merchant.name)
+        //                .font(.system(size: 26, weight: .bold, design: .default))
+        //                .padding(.trailing, 10)
+        //                .foregroundColor(.primary)
+        //        }
+        //        .frame(minWidth: 0,
+        //               maxWidth: .infinity,
+        //               alignment: .topLeading)
+        //        .background(.secondary)
+        //        .modifier(CardModifier())
+        //        .padding(.leading, 5)
+        //        .padding(.trailing, 5)
+    }
+}
+
+public struct CardGradientBackground: View {
+    public var body: some View {
+        ZStack {
+            LinearGradient(colors: [Color.cyan.opacity(0.7), Color.purple.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+            Circle()
+                .frame(width: 120)
+                .foregroundStyle(LinearGradient(colors: [Color.mint, Color.purple], startPoint: .top, endPoint: .leading))
+                .offset(x: -150, y: -60)
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .frame(width: 200, height: 200)
+                .foregroundStyle(LinearGradient(colors: [Color.purple.opacity(0.6), Color.mint.opacity(0.5)], startPoint: .top, endPoint: .leading))
+                .offset(x: 180, y: -120)
+                .rotationEffect(.degrees(35))
+            
+        }.ignoresSafeArea(.all)
+    }
+}
+
+struct MerchantImageNameCardView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            ScrollView {
+                VStack {
+                    MerchantImageNameCardView(merchant: MerchantDto(name: "Vero", image: "https://www.linkpicture.com/q/Vero.png", locations: nil))
+                    MerchantImageNameCardView(merchant: MerchantDto(name: "TopShop", image: "https://www.linkpicture.com/q/Topshop.jpeg", locations: nil))
+                    MerchantImageNameCardView(merchant: MerchantDto(name: "Neptun", image: "https://www.linkpicture.com/q/Neptun.png", locations: nil))
+                }
+            }
+            .background(
+                GradientBackground()
+            )
+            .navigationTitle("Merchants")
+        }
     }
 }
