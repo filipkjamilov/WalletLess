@@ -1,0 +1,30 @@
+//  Created by Filip Kjamilov on 23.5.22.
+
+"Dashboard" = "Paneli";
+"Merchants" = "Tregtarët";
+"Settings" = "Cilësimet";
+"Confirm" = "Konfirmo";
+"Cancel" = "Anulo";
+"scanCards" = "Ju lutemi skanoni disa karta.";
+"Search" = "Kërko";
+"AppConfiguration" = "Konfigurimi i aplikacionit";
+"Macedonian" = "Maqedonase";
+"English" = "Anglisht";
+"Albanian" = "Shqiptare";
+"Support" = "Mbështetje";
+"User manual" = "Manuali i perdoruesit";
+"Call us" = "Na telefononi";
+"Email us" = "Na dërgoni me email";
+"Legal Policy" = "Politika Juridike";
+"Terms and conditions" = "Termat dhe Kushtet";
+"Privacy Policy" = "Politika e privatësisë";
+"About the app" = "Rreth aplikacionit";
+"Version" = "Version";
+"Last update" = "Përditësimi i fundit";
+"Device name" = "Emri i pajisjes";
+"System version" = "Versioni i sistemit";
+"Developed by" = "Zhvilluar nga";
+"All rights reserved" = "Të gjitha të drejtat e rezervuara";
+"LegalPolicyFooter" = "Për më shumë politika ligjore na kontaktoni.";
+"Cannot establish connection!" = "Lidhja nuk mund të vendoset!";
+

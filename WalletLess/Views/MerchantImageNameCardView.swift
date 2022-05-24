@@ -4,10 +4,12 @@ import SwiftUI
 
 struct MerchantImageNameCardView: View {
     
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
     var merchant: MerchantDto
     
     var body: some View {
-        
         
         ZStack {
             RoundedRectangle(cornerRadius: 30)
@@ -153,7 +155,7 @@ struct MerchantImageNameCardView_Previews: PreviewProvider {
             .background(
                 GradientBackground()
             )
-            .navigationTitle("Merchants")
+            .navigationTitle("Merchants".localized(.macedonian))
         }
     }
 }

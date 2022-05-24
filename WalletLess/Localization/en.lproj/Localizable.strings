@@ -1,0 +1,30 @@
+//  Created by Filip Kjamilov on 23.5.22.
+
+"Dashboard" = "Dashboard";
+"Merchants" = "Merchants";
+"Settings" = "Settings";
+"Confirm" = "Confirm";
+"Cancel" = "Cancel";
+"scanCards" = "Please scan some cards.";
+"Search" = "Search";
+"AppConfiguration" = "AppConfiguration";
+"Macedonian" = "Macedonian";
+"English" = "English";
+"Albanian" = "Albanian";
+"Support" = "Support";
+"User manual" = "User manual";
+"Call us" = "Call us";
+"Email us" = "Email us";
+"Legal Policy" = "Legal Policy";
+"Terms and conditions" = "Terms and conditions";
+"Privacy Policy" = "Privacy Policy";
+"About the app" = "About the app";
+"Version" = "Version";
+"Last update" = "Last update";
+"Device name" = "Device name";
+"System version" = "System version";
+"Developed by" = "Developed by";
+"All rights reserved" = "All rights reserved";
+"LegalPolicyFooter" = "For more legal policy contact us.";
+"Cannot establish connection!" = "Cannot establish connection!";
+

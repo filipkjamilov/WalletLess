@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		022A33F2283BFEBA008E2037 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 022A33F4283BFEBA008E2037 /* Localizable.strings */; };
+		022A33F7283C05B6008E2037 /* Extension+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022A33F6283C05B6008E2037 /* Extension+Localization.swift */; };
 		022EA28727DFA7F50047F58F /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022EA28627DFA7F50047F58F /* ModalView.swift */; };
+		023CF0D2283CE5E200948FD7 /* Extension+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023CF0D1283CE5E200948FD7 /* Extension+Bundle.swift */; };
+		023CF0D4283CE64D00948FD7 /* Extension+Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023CF0D3283CE64D00948FD7 /* Extension+Binding.swift */; };
 		024DF962282145ED008AFB1C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 024DF961282145ED008AFB1C /* GoogleService-Info.plist */; };
 		0269DE17281AF99A00FC0E0A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0269DE16281AF99A00FC0E0A /* NetworkManager.swift */; };
 		02763D7B27CB8B070036F41A /* Merchants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D7A27CB8B070036F41A /* Merchants.swift */; };
@@ -49,7 +53,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		022A33F3283BFEBA008E2037 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		022A33F5283BFED0008E2037 /* mk-MK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "mk-MK"; path = "mk-MK.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		022A33F6283C05B6008E2037 /* Extension+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Localization.swift"; sourceTree = "<group>"; };
 		022EA28627DFA7F50047F58F /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		023CF0CF283CDB8400948FD7 /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = sq.lproj/Localizable.strings; sourceTree = "<group>"; };
+		023CF0D1283CE5E200948FD7 /* Extension+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Bundle.swift"; sourceTree = "<group>"; };
+		023CF0D3283CE64D00948FD7 /* Extension+Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Binding.swift"; sourceTree = "<group>"; };
 		024DF961282145ED008AFB1C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0269DE16281AF99A00FC0E0A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		02763D7A27CB8B070036F41A /* Merchants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchants.swift; sourceTree = "<group>"; };
@@ -101,16 +111,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0269DE15281AF98800FC0E0A /* utils */ = {
+		022A33EF283BFDB7008E2037 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				022A33F4283BFEBA008E2037 /* Localizable.strings */,
+				022A33F6283C05B6008E2037 /* Extension+Localization.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		023CF0D0283CE5B600948FD7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				023CF0D1283CE5E200948FD7 /* Extension+Bundle.swift */,
+				023CF0D3283CE64D00948FD7 /* Extension+Binding.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0269DE15281AF98800FC0E0A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				02FC100F27CD665C00AF3EEB /* RealmManager.swift */,
 				0269DE16281AF99A00FC0E0A /* NetworkManager.swift */,
 			);
-			path = utils;
+			path = Utils;
 			sourceTree = "<group>";
 		};
-		02763D7527CB8AB80036F41A /* views */ = {
+		02763D7527CB8AB80036F41A /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				02763D7E27CB8B240036F41A /* Dashboard.swift */,
@@ -120,7 +148,7 @@
 				022EA28627DFA7F50047F58F /* ModalView.swift */,
 				02E3ACCA280CB84000888017 /* MailView.swift */,
 			);
-			path = views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		02763D8927CB9BCF0036F41A /* Models */ = {
@@ -154,9 +182,11 @@
 		02E932AB27344DCA0059D1CF /* WalletLess */ = {
 			isa = PBXGroup;
 			children = (
-				0269DE15281AF98800FC0E0A /* utils */,
+				023CF0D0283CE5B600948FD7 /* Extensions */,
+				022A33EF283BFDB7008E2037 /* Localization */,
+				0269DE15281AF98800FC0E0A /* Utils */,
 				02763D8927CB9BCF0036F41A /* Models */,
-				02763D7527CB8AB80036F41A /* views */,
+				02763D7527CB8AB80036F41A /* Views */,
 				02E932AC27344DCA0059D1CF /* WalletLessApp.swift */,
 				02E932AE27344DCA0059D1CF /* ContentView.swift */,
 				024DF961282145ED008AFB1C /* GoogleService-Info.plist */,
@@ -284,6 +314,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"mk-MK",
+				sq,
 			);
 			mainGroup = 02E932A027344DCA0059D1CF;
 			packageReferences = (
@@ -308,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02E932B427344DCC0059D1CF /* Preview Assets.xcassets in Resources */,
+				022A33F2283BFEBA008E2037 /* Localizable.strings in Resources */,
 				02E932B127344DCC0059D1CF /* Assets.xcassets in Resources */,
 				024DF962282145ED008AFB1C /* GoogleService-Info.plist in Resources */,
 			);
@@ -335,14 +368,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				02763D9327CC1A660036F41A /* MerchantImageNameCardView.swift in Sources */,
+				023CF0D4283CE64D00948FD7 /* Extension+Binding.swift in Sources */,
 				022EA28727DFA7F50047F58F /* ModalView.swift in Sources */,
 				02763D7F27CB8B240036F41A /* Dashboard.swift in Sources */,
 				02FC101027CD665C00AF3EEB /* RealmManager.swift in Sources */,
+				022A33F7283C05B6008E2037 /* Extension+Localization.swift in Sources */,
 				0269DE17281AF99A00FC0E0A /* NetworkManager.swift in Sources */,
 				02E932AF27344DCA0059D1CF /* ContentView.swift in Sources */,
 				02763D7D27CB8B1C0036F41A /* Settings.swift in Sources */,
 				02E932AD27344DCA0059D1CF /* WalletLessApp.swift in Sources */,
 				02763D7B27CB8B070036F41A /* Merchants.swift in Sources */,
+				023CF0D2283CE5E200948FD7 /* Extension+Bundle.swift in Sources */,
 				02763D8D27CB9C100036F41A /* Merchant.swift in Sources */,
 				02E3ACCB280CB84000888017 /* MailView.swift in Sources */,
 			);
@@ -379,6 +415,19 @@
 			targetProxy = 02E932C427344DCC0059D1CF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		022A33F4283BFEBA008E2037 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				022A33F3283BFEBA008E2037 /* en */,
+				022A33F5283BFED0008E2037 /* mk-MK */,
+				023CF0CF283CDB8400948FD7 /* sq */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		02E932CB27344DCC0059D1CF /* Debug */ = {

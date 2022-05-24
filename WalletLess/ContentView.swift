@@ -4,6 +4,9 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
     @StateObject var realmManager = RealmManager()
     @State private var tabSelection = 1
     let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
@@ -24,20 +27,20 @@ struct ContentView: View {
                     .environmentObject(realmManager)
                     .tabItem() {
                         Image(systemName: "creditcard")
-                        Text("Dashboard")
+                        Text("Dashboard".localized(language))
                     }
                     .tag(1)
                 Merchants(tabSelection: $tabSelection)
                     .environmentObject(realmManager)
                     .tabItem() {
                         Image(systemName: "plus.square")
-                        Text("Merchants")
+                        Text("Merchants".localized(language))
                     }
                     .tag(2)
                 Settings(tabSelection: $tabSelection)
                     .tabItem() {
                         Image(systemName: "slider.horizontal.3")
-                        Text("Settings")
+                        Text("Settings".localized(language))
                     }
                     .tag(3)
             }

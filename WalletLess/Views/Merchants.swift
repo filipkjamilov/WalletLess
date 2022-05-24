@@ -47,6 +47,9 @@ struct CardModifier: ViewModifier {
 
 struct Merchants: View {
     
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
     @EnvironmentObject var realmManager: RealmManager
     @Binding var tabSelection: Int
     @ObservedObject private var viewModel = MerchantsViewModel()
@@ -70,7 +73,7 @@ struct Merchants: View {
                             .scaledToFit()
                             .frame(width: 200, height: 200)
                             .foregroundColor(.primary)
-                        Text("Cannot establish connection!")
+                        Text("Cannot establish connection!".localized(language))
                             .font(.system(size: 18))
                             .foregroundColor(.primary)
                             .padding()
@@ -87,7 +90,7 @@ struct Merchants: View {
                         /// This pins the `MerchantImageNameCardView` to top of the screen.
                         Spacer()
                     }
-                    .searchable(text: $searchText)
+                    .searchable(text: $searchText, prompt: "Search".localized(language))
                     .sheet(isPresented: $isPresentingScanner) {
                         CodeScannerView(codeTypes: [.qr, .code128]) { response in
                             if case let .success(result) = response {
@@ -127,7 +130,7 @@ struct Merchants: View {
                     }
                 }
             }
-            .navigationBarTitle("Merchants", displayMode: .large)
+            .navigationBarTitle("Merchants".localized(language), displayMode: .large)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(
                 GradientBackground()
@@ -144,6 +147,7 @@ struct Merchants: View {
         if MFMailComposeViewController.canSendMail() {
             self.isPresentingMailView = true
         } else {
+            // TODO: FKJ - ALLERT!
             print("Present alert that mail sending is not possible")
         }
     }

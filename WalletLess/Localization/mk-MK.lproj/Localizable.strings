@@ -1,0 +1,30 @@
+//  Created by Filip Kjamilov on 23.5.22.
+
+"Dashboard" = "Дома";
+"Merchants" = "Трговци";
+"Settings" = "Прилагодување";
+"Confirm" = "Потврди";
+"Cancel" = "Откажи";
+"scanCards" = "Ве молиме скенирајте картички.";
+"Search" = "Пребарувај";
+"AppConfiguration" = "Прилагодување за апликацијата";
+"Macedonian" = "Македонски";
+"English" = "Англиски";
+"Albanian" = "Албански";
+"Support" = "Корисничка подршка";
+"User manual" = "Упатство за користење";
+"Call us" = "Јавете ни се";
+"Email us" = "Испратете ни е-пошта";
+"Legal Policy" = "Правна политика";
+"Terms and conditions" = "Правила и услови";
+"Privacy Policy" = "Политика за приватност";
+"About the app" = "За апликацијата";
+"Version" = "Верзија";
+"Last update" = "Последно ажурирање";
+"Device name" = "Име на уред";
+"System version" = "Системска верзија";
+"Developed by" = "Развиена од";
+"All rights reserved" = "Сите права се задржани";
+"LegalPolicyFooter" = "За повеќе правна политика, контактирајте не.";
+"Cannot establish connection!" = "Не може да се воспостави врска!";
+

@@ -7,6 +7,9 @@ import Combine
 
 struct Dashboard: View {
     
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
     @EnvironmentObject var realmManager: RealmManager
     @Binding var tabSelection: Int
     @State private var isPresentingSheet = false
@@ -59,7 +62,7 @@ struct Dashboard: View {
                             .scaledToFit()
                             .frame(width: 200, height: 200)
                             .foregroundColor(.primary)
-                        Text("Please scan some cards.")
+                        Text("scanCards".localized(language))
                             .font(.system(size: 18))
                             .foregroundColor(.primary)
                             .padding()
@@ -85,11 +88,11 @@ struct Dashboard: View {
                                     isPresentingConfirmationDialog = true
                                 }
                                 .alert("Are you sure you want to remove \(currentMerchant.name) from the list?", isPresented: $isPresentingConfirmationDialog) {
-                                    Button("Confirm", role: .destructive) {
+                                    Button("Confirm".localized(language), role: .destructive) {
                                         realmManager.deleteMerchant(id: currentMerchant.id)
                                         currentMerchant = MerchantDto()
                                     }
-                                    Button("Cancel", role: .cancel) { /* no-op */ }
+                                    Button("Cancel".localized(language), role: .cancel) { /* no-op */ }
                                 }
                         }
                     }
@@ -97,7 +100,7 @@ struct Dashboard: View {
                 // Modal view for showing the card details
                 ModalView(isShowing: $isPresentingSheet, merchant: $currentMerchant)
             }
-            .navigationBarTitle("Dashboard", displayMode: .large)
+            .navigationBarTitle("Dashboard".localized(language), displayMode: .large)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(
                 GradientBackground()
