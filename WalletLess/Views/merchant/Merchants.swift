@@ -56,6 +56,7 @@ struct Merchants: View {
     @ObservedObject private var networkManger = NetworkManager()
     @State private var isPresentingScanner = false
     @State private var isPresentingMailView = false
+    @State private var alertForMail = false
     @State private var scannedCode: String?
     @State private var currentMerchant: MerchantDto = MerchantDto()
     @State var result: Result<MFMailComposeResult, Error>? = nil
@@ -126,6 +127,7 @@ struct Merchants: View {
                             .padding()
                             .shadow(radius: 2)
                             .disabled(!networkManger.isConnected)
+                            .alert("Mail provider is missing. ", isPresented: $alertForMail, actions: {})
                         
                     }
                 }
@@ -147,8 +149,8 @@ struct Merchants: View {
         if MFMailComposeViewController.canSendMail() {
             self.isPresentingMailView = true
         } else {
-            // TODO: FKJ - ALLERT!
-            print("Present alert that mail sending is not possible")
+            alertForMail.toggle()
+            print("Mail provider is missing")
         }
     }
     

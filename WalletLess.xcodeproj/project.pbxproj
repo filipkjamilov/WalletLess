@@ -23,6 +23,11 @@
 		02763D8D27CB9C100036F41A /* Merchant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D8C27CB9C100036F41A /* Merchant.swift */; };
 		02763D9327CC1A660036F41A /* MerchantImageNameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D9227CC1A660036F41A /* MerchantImageNameCardView.swift */; };
 		02B955CF283D316A0007BB9E /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B955CE283D316A0007BB9E /* Extension+String.swift */; };
+		02B955D4283D32390007BB9E /* CardGradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B955D3283D32390007BB9E /* CardGradientBackground.swift */; };
+		02B955D8283D32CC0007BB9E /* AppConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B955D7283D32CC0007BB9E /* AppConfigurationView.swift */; };
+		02B955DA283D332F0007BB9E /* SupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B955D9283D332F0007BB9E /* SupportView.swift */; };
+		02B955DC283D35460007BB9E /* AboutTheAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B955DB283D35460007BB9E /* AboutTheAppView.swift */; };
+		02B955DE283D35930007BB9E /* LegalPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B955DD283D35930007BB9E /* LegalPolicyView.swift */; };
 		02E3ACC9280CAC2500888017 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 02E3ACC8280CAC2500888017 /* CodeScanner */; };
 		02E3ACCB280CB84000888017 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E3ACCA280CB84000888017 /* MailView.swift */; };
 		02E932AD27344DCA0059D1CF /* WalletLessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E932AC27344DCA0059D1CF /* WalletLessApp.swift */; };
@@ -69,6 +74,11 @@
 		02763D8C27CB9C100036F41A /* Merchant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchant.swift; sourceTree = "<group>"; };
 		02763D9227CC1A660036F41A /* MerchantImageNameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantImageNameCardView.swift; sourceTree = "<group>"; };
 		02B955CE283D316A0007BB9E /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		02B955D3283D32390007BB9E /* CardGradientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGradientBackground.swift; sourceTree = "<group>"; };
+		02B955D7283D32CC0007BB9E /* AppConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationView.swift; sourceTree = "<group>"; };
+		02B955D9283D332F0007BB9E /* SupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportView.swift; sourceTree = "<group>"; };
+		02B955DB283D35460007BB9E /* AboutTheAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTheAppView.swift; sourceTree = "<group>"; };
+		02B955DD283D35930007BB9E /* LegalPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalPolicyView.swift; sourceTree = "<group>"; };
 		02E3ACCA280CB84000888017 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		02E932A927344DCA0059D1CF /* WalletLess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalletLess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02E932AC27344DCA0059D1CF /* WalletLessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLessApp.swift; sourceTree = "<group>"; };
@@ -144,12 +154,10 @@
 		02763D7527CB8AB80036F41A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				02B955D5283D328B0007BB9E /* mail */,
 				02B955D2283D31E40007BB9E /* settings */,
 				02B955D1283D31DD0007BB9E /* merchant */,
 				02B955D0283D31D80007BB9E /* dashboard */,
-				02763D9227CC1A660036F41A /* MerchantImageNameCardView.swift */,
-				022EA28627DFA7F50047F58F /* ModalView.swift */,
-				02E3ACCA280CB84000888017 /* MailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				02763D7E27CB8B240036F41A /* Dashboard.swift */,
+				022EA28627DFA7F50047F58F /* ModalView.swift */,
 			);
 			path = dashboard;
 			sourceTree = "<group>";
@@ -174,6 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				02763D7A27CB8B070036F41A /* Merchants.swift */,
+				02763D9227CC1A660036F41A /* MerchantImageNameCardView.swift */,
+				02B955D3283D32390007BB9E /* CardGradientBackground.swift */,
 			);
 			path = merchant;
 			sourceTree = "<group>";
@@ -182,8 +193,20 @@
 			isa = PBXGroup;
 			children = (
 				02763D7C27CB8B1C0036F41A /* Settings.swift */,
+				02B955D7283D32CC0007BB9E /* AppConfigurationView.swift */,
+				02B955D9283D332F0007BB9E /* SupportView.swift */,
+				02B955DB283D35460007BB9E /* AboutTheAppView.swift */,
+				02B955DD283D35930007BB9E /* LegalPolicyView.swift */,
 			);
 			path = settings;
+			sourceTree = "<group>";
+		};
+		02B955D5283D328B0007BB9E /* mail */ = {
+			isa = PBXGroup;
+			children = (
+				02E3ACCA280CB84000888017 /* MailView.swift */,
+			);
+			path = mail;
 			sourceTree = "<group>";
 		};
 		02E932A027344DCA0059D1CF = {
@@ -399,16 +422,21 @@
 				022EA28727DFA7F50047F58F /* ModalView.swift in Sources */,
 				02763D7F27CB8B240036F41A /* Dashboard.swift in Sources */,
 				02FC101027CD665C00AF3EEB /* RealmManager.swift in Sources */,
+				02B955D8283D32CC0007BB9E /* AppConfigurationView.swift in Sources */,
+				02B955DA283D332F0007BB9E /* SupportView.swift in Sources */,
 				02B955CF283D316A0007BB9E /* Extension+String.swift in Sources */,
 				022A33F7283C05B6008E2037 /* LocalizationService.swift in Sources */,
 				0269DE17281AF99A00FC0E0A /* NetworkManager.swift in Sources */,
+				02B955DC283D35460007BB9E /* AboutTheAppView.swift in Sources */,
 				02E932AF27344DCA0059D1CF /* ContentView.swift in Sources */,
 				02763D7D27CB8B1C0036F41A /* Settings.swift in Sources */,
 				02E932AD27344DCA0059D1CF /* WalletLessApp.swift in Sources */,
 				02763D7B27CB8B070036F41A /* Merchants.swift in Sources */,
 				023CF0D2283CE5E200948FD7 /* Extension+Bundle.swift in Sources */,
+				02B955DE283D35930007BB9E /* LegalPolicyView.swift in Sources */,
 				02763D8D27CB9C100036F41A /* Merchant.swift in Sources */,
 				02E3ACCB280CB84000888017 /* MailView.swift in Sources */,
+				02B955D4283D32390007BB9E /* CardGradientBackground.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
