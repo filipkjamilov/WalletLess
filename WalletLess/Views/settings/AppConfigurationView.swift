@@ -23,9 +23,7 @@ public struct AppConfigurationView: View {
                         Text("Albanian".localized(language)).tag(Language.albanian)
                     }.pickerStyle(.segmented)
                 }
-                
             }
-            
         }
         .headerProminence(.increased)
         .listRowBackground(Color.primary.opacity(0.1))

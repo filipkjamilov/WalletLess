@@ -93,15 +93,19 @@ struct Merchants: View {
                     }
                     .searchable(text: $searchText, prompt: "Search".localized(language))
                     .sheet(isPresented: $isPresentingScanner) {
-                        CodeScannerView(codeTypes: [.qr, .code128]) { response in
-                            if case let .success(result) = response {
-                                // Go to dashboard
-                                tabSelection = 1
-                                // Map the scanned code (barcode/qrcode)
-                                mapScannedCode(with: result)
-                                // Dismiss scanner view
-                                isPresentingScanner = false
+                        ZStack {
+                            CodeScannerView(codeTypes: [.qr, .code128, .code39, .code93, .code39Mod43, .ean8, .ean13]) { response in
+                                if case let .success(result) = response {
+                                    // Go to dashboard
+                                    tabSelection = 1
+                                    // Map the scanned code (barcode/qrcode)
+                                    mapScannedCode(with: result)
+                                    // Dismiss scanner view
+                                    isPresentingScanner = false
+                                }
                             }
+                            // TODO: FKJ - ADD buttons and image on the scan view
+                            Text("Test")
                         }
                     }
                     .sheet(isPresented: $isPresentingMailView) {
@@ -173,7 +177,7 @@ struct Merchants: View {
                                     image: currentMerchant.image,
                                     locations: currentMerchant.locations,
                                     scannedCode: result.string,
-                                    typeOfCode: .unknown)
+                                    typeOfCode: .CICode128BarcodeGenerator)
         }
         
         scannedCode = result.string
