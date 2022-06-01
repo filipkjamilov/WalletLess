@@ -13,23 +13,35 @@ struct MerchantImageNameCardView: View {
         
         ZStack {
             RoundedRectangle(cornerRadius: 30)
-                .fill(LinearGradient(colors: [Color.cyan.opacity(0.7), Color.purple.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing))
+                .fill(LinearGradient(colors: [Color.cyan.opacity(0.7), Color.purple.opacity(0.3)],
+                                     startPoint: .topLeading,
+                                     endPoint: .bottomTrailing))
                 .frame(minWidth: 0,
                        maxWidth: .infinity,
                        minHeight: 120,
                        maxHeight: 120,
                        alignment: .topLeading)
                 .shadow(color: Color.secondary, radius: 25, x: -10, y: 10)
-            ZStack {
-                Circle()
-                    .fill(Color.primary.opacity(0.3))
-                    .frame(width: 40)
-                Image(systemName: "creditcard")
-                    .resizable()
-                    .frame(width: 20, height: 15)
-                    .foregroundColor(.white)
-            }.offset(x: 165, y: -25)
-
+            
+            VStack {
+                HStack {
+                    Spacer()
+                    Button(action: {
+                    }, label: {
+                        Image(systemName: "creditcard")
+                            .font(.title3)
+                            .frame(width: 35, height: 35)
+                            .background(Color.primary.opacity(0.3))
+                            .clipShape(Circle())
+                            .foregroundColor(.white)
+                    })
+                    .padding()
+                    .shadow(radius: 2)
+                    
+                }
+                Spacer()
+            }
+            
             HStack {
                 AsyncImage(url: URL(string: merchant.image)) { image in
                     image.resizable()
@@ -61,9 +73,15 @@ struct MerchantImageNameCardView_Previews: PreviewProvider {
         NavigationView {
             ScrollView {
                 VStack {
-                    MerchantImageNameCardView(merchant: MerchantDto(name: "Vero", image: "https://www.linkpicture.com/q/Vero.png", locations: nil))
-                    MerchantImageNameCardView(merchant: MerchantDto(name: "TopShop", image: "https://www.linkpicture.com/q/Topshop.jpeg", locations: nil))
-                    MerchantImageNameCardView(merchant: MerchantDto(name: "Neptun", image: "https://www.linkpicture.com/q/Neptun.png", locations: nil))
+                    MerchantImageNameCardView(merchant: MerchantDto(name: "Vero",
+                                                                    image: "https://www.linkpicture.com/q/Vero.png",
+                                                                    locations: nil))
+                    MerchantImageNameCardView(merchant: MerchantDto(name: "TopShop",
+                                                                    image: "https://www.linkpicture.com/q/Topshop.jpeg",
+                                                                    locations: nil))
+                    MerchantImageNameCardView(merchant: MerchantDto(name: "Neptun",
+                                                                    image: "https://www.linkpicture.com/q/Neptun.png",
+                                                                    locations: nil))
                 }
             }
             .background(

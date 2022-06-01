@@ -616,9 +616,11 @@
 				DEVELOPMENT_TEAM = 5R64393PP4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WalletLess/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need for scanning various barcodes.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need it to sort the cards by nearest location, and pop the barcode/qrcode of the neerest.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need it to sort the cards by nearest location, and pop the barcode/qrcode of the neerest.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need this persmission to be able to use photos of loyalty card, if the user does not have it physicaly.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -652,9 +654,11 @@
 				DEVELOPMENT_TEAM = 5R64393PP4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WalletLess/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need for scanning various barcodes.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need it to sort the cards by nearest location, and pop the barcode/qrcode of the neerest.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need it to sort the cards by nearest location, and pop the barcode/qrcode of the neerest.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need this persmission to be able to use photos of loyalty card, if the user does not have it physicaly.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

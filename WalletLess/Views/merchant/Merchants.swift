@@ -62,7 +62,21 @@ struct Merchants: View {
     @State var result: Result<MFMailComposeResult, Error>? = nil
     
     @State private var searchText = ""
+    @State private var isTorchOn = false
     
+    var codeScannerView: CodeScannerView {
+        CodeScannerView(codeTypes: [.qr, .code128, .code39, .code93, .code39Mod43, .ean8, .ean13],
+                        isTorchOn: isTorchOn) { response in
+            if case let .success(result) = response {
+                // Go to dashboard
+                tabSelection = 1
+                // Map the scanned code (barcode/qrcode)
+                mapScannedCode(with: result)
+                // Dismiss scanner view
+                isPresentingScanner = false
+            }
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -94,25 +108,68 @@ struct Merchants: View {
                     .searchable(text: $searchText, prompt: "Search".localized(language))
                     .sheet(isPresented: $isPresentingScanner) {
                         ZStack {
-                            CodeScannerView(codeTypes: [.qr, .code128, .code39, .code93, .code39Mod43, .ean8, .ean13]) { response in
-                                if case let .success(result) = response {
-                                    // Go to dashboard
-                                    tabSelection = 1
-                                    // Map the scanned code (barcode/qrcode)
-                                    mapScannedCode(with: result)
-                                    // Dismiss scanner view
-                                    isPresentingScanner = false
+                            
+                            self.codeScannerView
+                            
+                            ZStack {
+                                Image(systemName: "viewfinder")
+                                    .resizable()
+                                    .font(Font.title.weight(.ultraLight))
+                                    .scaledToFit()
+                                Rectangle()
+                                    .fill(.red)
+                                    .frame(height: 5)
+                            }.frame(width: UIScreen.main.bounds.size.width-100,
+                                    height: UIScreen.main.bounds.size.height-100,
+                                    alignment: .center)
+                            
+                            VStack(spacing: 10) {
+                                Spacer()
+                                HStack {
+                                    Spacer()
+                                    Button(action: {
+                                        isTorchOn.toggle()
+                                    }, label: {
+                                        Image(systemName: isTorchOn ? "flashlight.on.fill" : "flashlight.off.fill")
+                                            .font(.title2)
+                                            .frame(width: 50, height: 50)
+                                            .background(networkManger.isConnected ? Color.blue : Color.gray)
+                                            .clipShape(Circle())
+                                            .foregroundColor(.white)
+                                    })
+                                    .padding(.trailing)
+                                    .shadow(radius: 2)
+                                    .padding(.bottom, 10)
+                                    
                                 }
+                                // TODO: FKJ - Feature Show Gallery on camera view
+//                                HStack {
+//                                    Spacer()
+//                                    Button(action: {
+//                                        isGalleryPresented.toggle()
+//                                        requestGalleryPermission()
+//                                    }, label: {
+//                                        Image(systemName: "photo.on.rectangle")
+//                                            .font(.title2)
+//                                            .frame(width: 50, height: 50)
+//                                            .background(networkManger.isConnected ? Color.blue : Color.gray)
+//                                            .clipShape(Circle())
+//                                            .foregroundColor(.white)
+//                                    })
+//                                    .padding(.trailing)
+//                                    .padding(.bottom, 10)
+//                                    .shadow(radius: 2)
+//                                }
                             }
-                            // TODO: FKJ - ADD buttons and image on the scan view
-                            Text("Test")
                         }
                     }
                     .sheet(isPresented: $isPresentingMailView) {
-                        MailView(result: $result, newSubject: "Requesting a new merchant", newMessageBody: "Dear Walletless, I would like to report the following...")
+                        MailView(result: $result,
+                                 newSubject: "Requesting a new merchant",
+                                 newMessageBody: "Dear Walletless, I would like to report the following...")
                     }
                 }
-
+                
                 // Floating Button
                 VStack {
                     Spacer()
@@ -128,10 +185,10 @@ struct Merchants: View {
                                 .clipShape(Circle())
                                 .foregroundColor(.white)
                         })
-                            .padding()
-                            .shadow(radius: 2)
-                            .disabled(!networkManger.isConnected)
-                            .alert("Mail provider is missing. ", isPresented: $alertForMail, actions: {})
+                        .padding()
+                        .shadow(radius: 2)
+                        .disabled(!networkManger.isConnected)
+                        .alert("Mail provider is missing. ", isPresented: $alertForMail, actions: {})
                         
                     }
                 }
@@ -143,11 +200,39 @@ struct Merchants: View {
             )
             .onAppear() {
                 self.viewModel.fetchDataIfNeeded()
+                isTorchOn = false
             }
         }
     }
     
     // MARK: -
+  
+    // TODO: FKJ - Feature Show Gallery on camera view
+//    private func requestGalleryPermission() {
+//        PHPhotoLibrary.requestAuthorization(for: .readWrite) { [self] (status) in
+//            DispatchQueue.main.async { [self] in
+//                showUI(for: status)
+//            }
+//        }
+//    }
+//
+//    private func showUI(for status: PHAuthorizationStatus) {
+//
+//        switch status {
+//        case .authorized:
+//            print("Authorized")
+//        case .limited:
+//            print("Limited")
+//        case .restricted:
+//            print("Restricted")
+//        case .denied:
+//            print("Denied")
+//        case .notDetermined:
+//            break
+//        @unknown default:
+//            break
+//        }
+//    }
     
     private func presentMailSheet() {
         if MFMailComposeViewController.canSendMail() {

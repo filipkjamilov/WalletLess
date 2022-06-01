@@ -8,6 +8,8 @@ struct ContentView: View {
     private var language = LocalizationService.shared.language
     
     @StateObject var realmManager = RealmManager()
+    // TODO: FKJ - [FEATURE] - Implement better switching between views
+    /// Have a enum where you can chose between .dashboard, .merchant, .settings
     @State private var tabSelection = 1
     let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
     let navigationBarAppearance: UINavigationBarAppearance = UINavigationBarAppearance()
