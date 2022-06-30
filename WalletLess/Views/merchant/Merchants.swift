@@ -201,6 +201,7 @@ struct Merchants: View {
             .onAppear() {
                 self.viewModel.fetchDataIfNeeded()
                 isTorchOn = false
+                searchText = ""
             }
         }
     }

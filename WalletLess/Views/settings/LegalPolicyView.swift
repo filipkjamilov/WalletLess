@@ -10,15 +10,15 @@ public struct LegalPolicyView: View {
     public var body: some View {
         Section(header: HStack {
             Image(systemName: "shield.lefthalf.fill")
-            Text("Legal Policy".localized(language))
+            Text("Privacy Policy".localized(language))
             
         }, footer: Text("LegalPolicyFooter".localized(language))) {
-            HStack {
-                Image(systemName: "doc.plaintext")
-                NavigationLink(destination: TermsAndConditionView()) {
-                    Text("Terms and conditions".localized(language))
-                }
-            }
+//            HStack {
+//                Image(systemName: "doc.plaintext")
+//                NavigationLink(destination: TermsAndConditionView()) {
+//                    Text("Terms and conditions".localized(language))
+//                }
+//            }
             HStack {
                 Image(systemName: "lock.shield")
                 NavigationLink(destination: PrivacyPolicyView()) {
@@ -32,6 +32,8 @@ public struct LegalPolicyView: View {
 }
 
 struct UserManualView: View {
+    
+    // TODO: FKJ - not used for now
     
     @AppStorage("language")
     private var language = LocalizationService.shared.language
@@ -53,6 +55,8 @@ struct UserManualView: View {
 
 struct TermsAndConditionView: View {
     
+    // TODO: FKJ - Not used for now.
+    
     @AppStorage("language")
     private var language = LocalizationService.shared.language
     
@@ -69,7 +73,7 @@ struct PrivacyPolicyView: View {
     private var language = LocalizationService.shared.language
     
     var body: some View {
-        Text("Integer tincidunt urna eu dictum blandit. Donec non nunc sit amet mi tincidunt faucibus. Praesent posuere magna sit amet nisi aliquet venenatis. Praesent felis tortor, pellentesque sed ipsum eu, vulputate vehicula elit. Aenean elementum non justo sit amet finibus. Duis porttitor tempus odio, nec vestibulum mi lacinia ut. Sed vel est suscipit, ultrices lectus vel, lobortis neque. Sed in lectus risus.")
+        Text("privacyPolicy".localized(language))
         
         Spacer()
     }

@@ -13,12 +13,12 @@ public struct SupportView: View {
             Text("Support".localized(language))
             
         }) {
-            HStack {
-                Image(systemName: "book")
-                NavigationLink(destination: UserManualView()) {
-                    Text("User manual".localized(language))
-                }
-            }
+//            HStack {
+//                Image(systemName: "book")
+//                NavigationLink(destination: UserManualView()) {
+//                    Text("User manual".localized(language))
+//                }
+//            }
             HStack {
                 Image(systemName: "phone")
                 Link("Call us".localized(language), destination: URL(string: "tel:+38978748743")!)
@@ -26,7 +26,7 @@ public struct SupportView: View {
             }
             HStack {
                 Image(systemName: "envelope")
-                Link("Email us".localized(language), destination: URL(string: "mailto:support@walletless.com")!)
+                Link("Email us".localized(language), destination: URL(string: "mailto:walletlessapp@gmail.com")!)
                     .buttonStyle(.plain)
             }
         }
