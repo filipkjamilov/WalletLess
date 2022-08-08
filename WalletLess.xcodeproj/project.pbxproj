@@ -13,6 +13,14 @@
 		023CF0D2283CE5E200948FD7 /* Extension+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023CF0D1283CE5E200948FD7 /* Extension+Bundle.swift */; };
 		023CF0D4283CE64D00948FD7 /* Extension+Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023CF0D3283CE64D00948FD7 /* Extension+Binding.swift */; };
 		024DF962282145ED008AFB1C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 024DF961282145ED008AFB1C /* GoogleService-Info.plist */; };
+		0260F52228A1A83600761A27 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0260F52128A1A83600761A27 /* LoginView.swift */; };
+		0260F52628A1A93200761A27 /* InputTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0260F52528A1A93200761A27 /* InputTextFieldView.swift */; };
+		0260F52928A1AD3200761A27 /* PreviewLayoutComponentsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0260F52828A1AD3200761A27 /* PreviewLayoutComponentsModifier.swift */; };
+		0260F52B28A1AE4C00761A27 /* InputPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0260F52A28A1AE4C00761A27 /* InputPasswordView.swift */; };
+		0260F52D28A1B40900761A27 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0260F52C28A1B40900761A27 /* ButtonView.swift */; };
+		0260F53128A1B98300761A27 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0260F53028A1B98300761A27 /* RegisterView.swift */; };
+		0260F53328A1BA6E00761A27 /* CloseModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0260F53228A1BA6E00761A27 /* CloseModifier.swift */; };
+		0260F53728A1BD3000761A27 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0260F53628A1BD3000761A27 /* ForgotPasswordView.swift */; };
 		0269DE17281AF99A00FC0E0A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0269DE16281AF99A00FC0E0A /* NetworkManager.swift */; };
 		02763D7B27CB8B070036F41A /* Merchants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D7A27CB8B070036F41A /* Merchants.swift */; };
 		02763D7D27CB8B1C0036F41A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D7C27CB8B1C0036F41A /* Settings.swift */; };
@@ -67,6 +75,14 @@
 		023CF0D1283CE5E200948FD7 /* Extension+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Bundle.swift"; sourceTree = "<group>"; };
 		023CF0D3283CE64D00948FD7 /* Extension+Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Binding.swift"; sourceTree = "<group>"; };
 		024DF961282145ED008AFB1C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0260F52128A1A83600761A27 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		0260F52528A1A93200761A27 /* InputTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextFieldView.swift; sourceTree = "<group>"; };
+		0260F52828A1AD3200761A27 /* PreviewLayoutComponentsModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewLayoutComponentsModifier.swift; sourceTree = "<group>"; };
+		0260F52A28A1AE4C00761A27 /* InputPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPasswordView.swift; sourceTree = "<group>"; };
+		0260F52C28A1B40900761A27 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		0260F53028A1B98300761A27 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		0260F53228A1BA6E00761A27 /* CloseModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseModifier.swift; sourceTree = "<group>"; };
+		0260F53628A1BD3000761A27 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		0269DE16281AF99A00FC0E0A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		02763D7A27CB8B070036F41A /* Merchants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchants.swift; sourceTree = "<group>"; };
 		02763D7C27CB8B1C0036F41A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -140,6 +156,92 @@
 				02B955CE283D316A0007BB9E /* Extension+String.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0260F51E28A1A81300761A27 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				0260F53428A1BD1000761A27 /* Forgot Password */,
+				0260F52E28A1B97000761A27 /* Register */,
+				0260F51F28A1A81C00761A27 /* Login */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		0260F51F28A1A81C00761A27 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0260F52028A1A82300761A27 /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		0260F52028A1A82300761A27 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0260F52128A1A83600761A27 /* LoginView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0260F52328A1A90C00761A27 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0260F52728A1AD0B00761A27 /* Modifier */,
+				0260F52428A1A91400761A27 /* Views */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		0260F52428A1A91400761A27 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0260F52528A1A93200761A27 /* InputTextFieldView.swift */,
+				0260F52A28A1AE4C00761A27 /* InputPasswordView.swift */,
+				0260F52C28A1B40900761A27 /* ButtonView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0260F52728A1AD0B00761A27 /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				0260F52828A1AD3200761A27 /* PreviewLayoutComponentsModifier.swift */,
+				0260F53228A1BA6E00761A27 /* CloseModifier.swift */,
+			);
+			path = Modifier;
+			sourceTree = "<group>";
+		};
+		0260F52E28A1B97000761A27 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				0260F52F28A1B97600761A27 /* View */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		0260F52F28A1B97600761A27 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0260F53028A1B98300761A27 /* RegisterView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0260F53428A1BD1000761A27 /* Forgot Password */ = {
+			isa = PBXGroup;
+			children = (
+				0260F53528A1BD2000761A27 /* View */,
+			);
+			path = "Forgot Password";
+			sourceTree = "<group>";
+		};
+		0260F53528A1BD2000761A27 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0260F53628A1BD3000761A27 /* ForgotPasswordView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		0269DE15281AF98800FC0E0A /* Utils */ = {
@@ -232,6 +334,8 @@
 		02E932AB27344DCA0059D1CF /* WalletLess */ = {
 			isa = PBXGroup;
 			children = (
+				0260F52328A1A90C00761A27 /* Base */,
+				0260F51E28A1A81300761A27 /* Features */,
 				023CF0D0283CE5B600948FD7 /* Extensions */,
 				022A33EF283BFDB7008E2037 /* Localization */,
 				0269DE15281AF98800FC0E0A /* Utils */,
@@ -423,18 +527,26 @@
 				02763D7F27CB8B240036F41A /* Dashboard.swift in Sources */,
 				02FC101027CD665C00AF3EEB /* RealmManager.swift in Sources */,
 				02B955D8283D32CC0007BB9E /* AppConfigurationView.swift in Sources */,
+				0260F52D28A1B40900761A27 /* ButtonView.swift in Sources */,
 				02B955DA283D332F0007BB9E /* SupportView.swift in Sources */,
 				02B955CF283D316A0007BB9E /* Extension+String.swift in Sources */,
+				0260F52B28A1AE4C00761A27 /* InputPasswordView.swift in Sources */,
 				022A33F7283C05B6008E2037 /* LocalizationService.swift in Sources */,
+				0260F53328A1BA6E00761A27 /* CloseModifier.swift in Sources */,
 				0269DE17281AF99A00FC0E0A /* NetworkManager.swift in Sources */,
 				02B955DC283D35460007BB9E /* AboutTheAppView.swift in Sources */,
 				02E932AF27344DCA0059D1CF /* ContentView.swift in Sources */,
 				02763D7D27CB8B1C0036F41A /* Settings.swift in Sources */,
+				0260F53128A1B98300761A27 /* RegisterView.swift in Sources */,
 				02E932AD27344DCA0059D1CF /* WalletLessApp.swift in Sources */,
 				02763D7B27CB8B070036F41A /* Merchants.swift in Sources */,
+				0260F52628A1A93200761A27 /* InputTextFieldView.swift in Sources */,
+				0260F52228A1A83600761A27 /* LoginView.swift in Sources */,
 				023CF0D2283CE5E200948FD7 /* Extension+Bundle.swift in Sources */,
+				0260F53728A1BD3000761A27 /* ForgotPasswordView.swift in Sources */,
 				02B955DE283D35930007BB9E /* LegalPolicyView.swift in Sources */,
 				02763D8D27CB9C100036F41A /* Merchant.swift in Sources */,
+				0260F52928A1AD3200761A27 /* PreviewLayoutComponentsModifier.swift in Sources */,
 				02E3ACCB280CB84000888017 /* MailView.swift in Sources */,
 				02B955D4283D32390007BB9E /* CardGradientBackground.swift in Sources */,
 			);
