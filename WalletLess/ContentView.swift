@@ -7,7 +7,7 @@ struct ContentView: View {
     @AppStorage("language")
     private var language = LocalizationService.shared.language
     
-    @StateObject var realmManager = RealmManager()
+    var realmManager = RealmManager.shared.localRealm
     // TODO: FKJ - [FEATURE] - Implement better switching between views
     /// Have a enum where you can chose between .dashboard, .merchant, .settings
     @State private var tabSelection = 1
@@ -26,14 +26,12 @@ struct ContentView: View {
         ZStack {
             TabView(selection: $tabSelection) {
                 Dashboard(tabSelection: $tabSelection)
-                    .environmentObject(realmManager)
                     .tabItem() {
                         Image(systemName: "creditcard")
                         Text("Dashboard".localized(language))
                     }
                     .tag(1)
                 Merchants(tabSelection: $tabSelection)
-                    .environmentObject(realmManager)
                     .tabItem() {
                         Image(systemName: "plus.square")
                         Text("Merchants".localized(language))

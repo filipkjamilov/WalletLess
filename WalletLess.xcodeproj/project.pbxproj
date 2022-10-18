@@ -39,6 +39,8 @@
 		02E932CA27344DCC0059D1CF /* WalletLessUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E932C927344DCC0059D1CF /* WalletLessUITestsLaunchTests.swift */; };
 		02FC100E27CD5B7B00AF3EEB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02FC100D27CD5B7B00AF3EEB /* RealmSwift */; };
 		02FC101027CD665C00AF3EEB /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FC100F27CD665C00AF3EEB /* RealmManager.swift */; };
+		17E3A59528FAB54D0031DCE1 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3A59428FAB54D0031DCE1 /* DashboardViewModel.swift */; };
+		17E3A59728FAC0240031DCE1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3A59628FAC0240031DCE1 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,8 @@
 		02E932C727344DCC0059D1CF /* WalletLessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLessUITests.swift; sourceTree = "<group>"; };
 		02E932C927344DCC0059D1CF /* WalletLessUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLessUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		02FC100F27CD665C00AF3EEB /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		17E3A59428FAB54D0031DCE1 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		17E3A59628FAC0240031DCE1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,7 @@
 			children = (
 				02FC100F27CD665C00AF3EEB /* RealmManager.swift */,
 				0269DE16281AF99A00FC0E0A /* NetworkManager.swift */,
+				17E3A59628FAC0240031DCE1 /* LocationManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 			children = (
 				02763D7E27CB8B240036F41A /* Dashboard.swift */,
 				022EA28627DFA7F50047F58F /* ModalView.swift */,
+				17E3A59428FAB54D0031DCE1 /* DashboardViewModel.swift */,
 			);
 			path = dashboard;
 			sourceTree = "<group>";
@@ -342,7 +348,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					02E932A827344DCA0059D1CF = {
 						CreatedOnToolsVersion = 13.0;
@@ -423,6 +429,7 @@
 				02763D7F27CB8B240036F41A /* Dashboard.swift in Sources */,
 				02FC101027CD665C00AF3EEB /* RealmManager.swift in Sources */,
 				02B955D8283D32CC0007BB9E /* AppConfigurationView.swift in Sources */,
+				17E3A59528FAB54D0031DCE1 /* DashboardViewModel.swift in Sources */,
 				02B955DA283D332F0007BB9E /* SupportView.swift in Sources */,
 				02B955CF283D316A0007BB9E /* Extension+String.swift in Sources */,
 				022A33F7283C05B6008E2037 /* LocalizationService.swift in Sources */,
@@ -430,6 +437,7 @@
 				02B955DC283D35460007BB9E /* AboutTheAppView.swift in Sources */,
 				02E932AF27344DCA0059D1CF /* ContentView.swift in Sources */,
 				02763D7D27CB8B1C0036F41A /* Settings.swift in Sources */,
+				17E3A59728FAC0240031DCE1 /* LocationManager.swift in Sources */,
 				02E932AD27344DCA0059D1CF /* WalletLessApp.swift in Sources */,
 				02763D7B27CB8B070036F41A /* Merchants.swift in Sources */,
 				023CF0D2283CE5E200948FD7 /* Extension+Bundle.swift in Sources */,
@@ -490,6 +498,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -552,6 +561,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

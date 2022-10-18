@@ -50,7 +50,7 @@ struct Merchants: View {
     @AppStorage("language")
     private var language = LocalizationService.shared.language
     
-    @EnvironmentObject var realmManager: RealmManager
+    var realmManager = RealmManager.shared
     @Binding var tabSelection: Int
     @ObservedObject private var viewModel = MerchantsViewModel()
     @ObservedObject private var networkManger = NetworkManager()
@@ -273,6 +273,5 @@ struct Merchants: View {
 struct Merchants_Previews: PreviewProvider {
     static var previews: some View {
         Merchants(tabSelection: Binding.constant(2))
-            .environmentObject(RealmManager())
     }
 }
