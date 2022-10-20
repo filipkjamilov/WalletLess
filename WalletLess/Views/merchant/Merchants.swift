@@ -11,9 +11,10 @@ import MessageUI
 class MerchantsViewModel: ObservableObject {
     
     @Published var merchants = [MerchantDto]()
-    let databaseName: String = "AllCards"
+    let databaseName: String = "Development"
     
     func fetchDataIfNeeded() {
+        print("First Download")
         let database = Database.database().reference().child(databaseName)
         
         database.observe(.value, with: { snap in
@@ -52,8 +53,8 @@ struct Merchants: View {
     
     var realmManager = RealmManager.shared
     @Binding var tabSelection: Int
-    @ObservedObject private var viewModel = MerchantsViewModel()
-    @ObservedObject private var networkManger = NetworkManager()
+    @StateObject private var viewModel = MerchantsViewModel()
+    @StateObject private var networkManger = NetworkManager()
     @State private var isPresentingScanner = false
     @State private var isPresentingMailView = false
     @State private var alertForMail = false
@@ -143,23 +144,23 @@ struct Merchants: View {
                                     
                                 }
                                 // TODO: FKJ - Feature Show Gallery on camera view
-//                                HStack {
-//                                    Spacer()
-//                                    Button(action: {
-//                                        isGalleryPresented.toggle()
-//                                        requestGalleryPermission()
-//                                    }, label: {
-//                                        Image(systemName: "photo.on.rectangle")
-//                                            .font(.title2)
-//                                            .frame(width: 50, height: 50)
-//                                            .background(networkManger.isConnected ? Color.blue : Color.gray)
-//                                            .clipShape(Circle())
-//                                            .foregroundColor(.white)
-//                                    })
-//                                    .padding(.trailing)
-//                                    .padding(.bottom, 10)
-//                                    .shadow(radius: 2)
-//                                }
+                                //                                HStack {
+                                //                                    Spacer()
+                                //                                    Button(action: {
+                                //                                        isGalleryPresented.toggle()
+                                //                                        requestGalleryPermission()
+                                //                                    }, label: {
+                                //                                        Image(systemName: "photo.on.rectangle")
+                                //                                            .font(.title2)
+                                //                                            .frame(width: 50, height: 50)
+                                //                                            .background(networkManger.isConnected ? Color.blue : Color.gray)
+                                //                                            .clipShape(Circle())
+                                //                                            .foregroundColor(.white)
+                                //                                    })
+                                //                                    .padding(.trailing)
+                                //                                    .padding(.bottom, 10)
+                                //                                    .shadow(radius: 2)
+                                //                                }
                             }
                         }
                     }
@@ -207,33 +208,33 @@ struct Merchants: View {
     }
     
     // MARK: -
-  
+    
     // TODO: FKJ - Feature Show Gallery on camera view
-//    private func requestGalleryPermission() {
-//        PHPhotoLibrary.requestAuthorization(for: .readWrite) { [self] (status) in
-//            DispatchQueue.main.async { [self] in
-//                showUI(for: status)
-//            }
-//        }
-//    }
-//
-//    private func showUI(for status: PHAuthorizationStatus) {
-//
-//        switch status {
-//        case .authorized:
-//            print("Authorized")
-//        case .limited:
-//            print("Limited")
-//        case .restricted:
-//            print("Restricted")
-//        case .denied:
-//            print("Denied")
-//        case .notDetermined:
-//            break
-//        @unknown default:
-//            break
-//        }
-//    }
+    //    private func requestGalleryPermission() {
+    //        PHPhotoLibrary.requestAuthorization(for: .readWrite) { [self] (status) in
+    //            DispatchQueue.main.async { [self] in
+    //                showUI(for: status)
+    //            }
+    //        }
+    //    }
+    //
+    //    private func showUI(for status: PHAuthorizationStatus) {
+    //
+    //        switch status {
+    //        case .authorized:
+    //            print("Authorized")
+    //        case .limited:
+    //            print("Limited")
+    //        case .restricted:
+    //            print("Restricted")
+    //        case .denied:
+    //            print("Denied")
+    //        case .notDetermined:
+    //            break
+    //        @unknown default:
+    //            break
+    //        }
+    //    }
     
     private func presentMailSheet() {
         if MFMailComposeViewController.canSendMail() {

@@ -4,48 +4,60 @@ import Foundation
 import RealmSwift
 import UIKit
 import CoreLocation
+import FirebaseStorage
 
 class RealmManager: ObservableObject {
     
     @Published var merchants: [MerchantDto] = []
     
     static let shared = RealmManager()
-    
     var localRealm = try! Realm()
     
+    private let storage = Storage.storage().reference()
+    
     private init() {
-        //        openRealm()
         getMerchants()
     }
     
-    func openRealm() {
-        do {
-            let config = Realm.Configuration(schemaVersion: 1)
-            Realm.Configuration.defaultConfiguration = config
-            localRealm = try Realm()
-        } catch {
-            print("Error opening Realm: \(error)")
-        }
-    }
-    
-    func addMerhant(name: String, image: String, locations: List<LocationsDto>, scannedCode: String, typeOfCode: CodeType) {
-        do {
-            try localRealm.write {
-                let imageURL = URL(string: image)!
-                let downloadedImage = try Data(contentsOf: imageURL)
-                let merchant = MerchantDto(value: ["name": name,
-                                                   "downloadedImage": downloadedImage,
-                                                   "image": image,
-                                                   "locations": locations,
-                                                   "scannedCode": scannedCode,
-                                                   "typeOfCode": typeOfCode])
-                localRealm.add(merchant)
-                getMerchants()
-                print("New merchant added")
-            }
-        } catch {
-            print("Error adding merchant: \(error)")
-        }
+    public func addMerhant(name: String,
+                           image: String,
+                           locations: List<LocationsDto>,
+                           scannedCode: String,
+                           typeOfCode: CodeType) {
+
+        storage.child("MKD/Tinex.png").downloadURL(completion: { url, error in
+            guard let url = url, error == nil else { return }
+            guard let imageURL = URL(string: url.absoluteString) else { return }
+            print("Continues")
+            
+            
+            
+            URLSession.shared.dataTask(with: imageURL, completionHandler: { data, _, error in
+                guard let data = data, error == nil else { return }
+                
+                DispatchQueue.main.async {
+                    let merchant = MerchantDto(value: ["name": name,
+                                                       "downloadedImage": data,
+                                                       "image": image,
+                                                       "locations": locations,
+                                                       "scannedCode": scannedCode,
+                                                       "typeOfCode": typeOfCode])
+                    
+                    do {
+                        try self.localRealm.write {
+                            self.localRealm.add(merchant)
+                        }
+                    } catch {
+                        print("Error adding merchant: \(error)")
+                    }
+                    self.getMerchants()
+                }
+                
+            }).resume()
+        })
+        
+        
+        
     }
     
     func getMerchants() {
@@ -88,7 +100,6 @@ class RealmManager: ObservableObject {
                 }
                 
                 self.merchants.sort { $0.distance < $1.distance }
-                print(self.merchants.first?.name ?? "")
             }
             
         } catch {

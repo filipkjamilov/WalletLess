@@ -38,7 +38,7 @@ struct ModalView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         .ignoresSafeArea()
-        .animation(.easeInOut)
+        .animation(.easeInOut, value: isShowing)
     }
     
     var mainView: some View {
@@ -88,7 +88,7 @@ struct ModalView: View {
             }
                 .foregroundColor(Color(UIColor.systemBackground))
         )
-        .animation(isDragging ? nil : .easeInOut(duration: 0.45))
+        .animation(.easeInOut(duration: 0.45), value: isDragging == false)
         .onDisappear {
             curHeight = minHeight
         }
@@ -126,4 +126,22 @@ struct ModalView: View {
                 }
             }
     }
+}
+
+func generateCode(from string: String, codeType: String?) -> UIImage {
+    let data = Data(string.utf8)
+    let context = CIContext()
+    let fallbackCodeType = "CICode128BarcodeGenerator"
+    
+    if let filter = CIFilter(name: codeType ?? fallbackCodeType) {
+        filter.setValue(data, forKey: "inputMessage")
+        
+        if let barcodeImage = filter.outputImage {
+            if let barcodeCGImage = context.createCGImage(barcodeImage, from: barcodeImage.extent) {
+                return UIImage(cgImage: barcodeCGImage)
+            }
+        }
+    }
+    
+    return UIImage(systemName: "xmark") ?? UIImage()
 }

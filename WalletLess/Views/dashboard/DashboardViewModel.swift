@@ -1,4 +1,4 @@
-//  Created by fkjamilov on 15.10.22.
+//  Created by Filip Kjamilov on 15.10.22.
 
 import Foundation
 import CoreLocation
@@ -9,34 +9,36 @@ final class DashboardViewModel: ObservableObject {
     
     @Published var isPresentingSheet = false
     @Published var isPresentingConfirmationDialog = false
-    @Published var realmManager = RealmManager.shared
-    
-    // MARK: - Private
+    var realmManager = RealmManager.shared
     
     private var locationManager = LocationManager()
     private var cancellables = Set<AnyCancellable>()
     
-    // TODO: FKJ - Check if we can implement better solution for sorting
-    init() {
-        realmManager.$merchants.sink { _ in
-            self.objectWillChange.send()
-        }.store(in: &cancellables)
-    }
-    
-    public func startSortingCards() {
+    public func viewAppeared() {
         locationManager.startUpdatingLocation()
-        
-        locationManager.$deviceLocation.sink { newLocation in
-            
-            self.realmManager.sortCards(with: newLocation)
-            
-        }.store(in: &cancellables)
-        
+        observeDeviceLocation()
+        observeMerchants()
     }
     
-    public func stopUpdatingLocation() {
+    public func viewDissapeared() {
         locationManager.stopUpdatingLocation()
         cancellables.removeAll(keepingCapacity: false)
+    }
+    
+    // MARK: - Private
+    
+    private func observeDeviceLocation() {
+        locationManager.$deviceLocation.sink { newLocation in
+            self.realmManager.sortCards(with: newLocation)
+        }.store(in: &cancellables)
+    }
+    
+    private func observeMerchants() {
+        realmManager.$merchants.sink { _ in
+            self.objectWillChange.send()
+            // TODO: FKJ - Remove print
+            print("Changed: No of Merchnats: \(self.realmManager.merchants.count)")
+        }.store(in: &cancellables)
     }
     
 }
