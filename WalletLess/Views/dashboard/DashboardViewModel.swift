@@ -36,8 +36,6 @@ final class DashboardViewModel: ObservableObject {
     private func observeMerchants() {
         realmManager.$merchants.sink { _ in
             self.objectWillChange.send()
-            // TODO: FKJ - Remove print
-            print("Changed: No of Merchnats: \(self.realmManager.merchants.count)")
         }.store(in: &cancellables)
     }
     

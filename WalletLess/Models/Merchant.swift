@@ -41,6 +41,19 @@ class MerchantDto: Object, ObjectKeyIdentifiable {
             }
         }
     }
+    
+    convenience init(name: String, downloadedImage: Data?, locations: [String: [String: Any]]?) {
+        self.init()
+        self.name = name
+        self.downloadedImage = downloadedImage
+        if locations != nil {
+            locations?.forEach { location in
+                let latitude = location.value["latitude"] as? Double ?? 0.00
+                let longitude = location.value["longitude"] as? Double ?? 0.00
+                self.locations.append(LocationsDto(longitude: longitude, latitude: latitude))
+            }
+        }
+    }
 }
 
 class LocationsDto: Object, ObjectKeyIdentifiable {

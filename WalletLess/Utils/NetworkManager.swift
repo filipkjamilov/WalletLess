@@ -3,7 +3,7 @@
 import Foundation
 import Network
 
-class NetworkManager: ObservableObject {
+final class NetworkManager: ObservableObject {
     let monitor = NWPathMonitor()
     let queue = DispatchQueue(label: "NetworkManager")
     @Published var isConnected = true

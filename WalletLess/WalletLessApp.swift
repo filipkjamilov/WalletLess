@@ -17,6 +17,9 @@ struct WalletLessApp: App {
     
     init() {
         FirebaseApp.configure()
+        // TODO: FKJ - Only works for Firebase Database
+        // For ussage of Storage the data will not be persisted!
+        Database.database().isPersistenceEnabled = true
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         UITabBar.appearance().backgroundColor = UIColor(Color.secondary)
         navigationBarAppearance.configureWithTransparentBackground()

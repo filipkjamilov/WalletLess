@@ -7,42 +7,44 @@ import Firebase
 import RealmSwift
 import CodeScanner
 import MessageUI
+import FirebaseStorage
+import Combine
 
 class MerchantsViewModel: ObservableObject {
     
     @Published var merchants = [MerchantDto]()
     let databaseName: String = "Development"
     
+    private let storage = Storage.storage().reference()
+    
     func fetchDataIfNeeded() {
-        print("First Download")
         let database = Database.database().reference().child(databaseName)
         
-        database.observe(.value, with: { snap in
+        database.observe(.value) { snapshot in
             
-            guard let dict = snap.value as? [String:Any] else {
-                return
-            }
+            guard let dict = snapshot.value as? [String:Any] else { return }
             
-            if dict.count > self.merchants.count {
-                self.merchants = dict.map { card in
-                    let card = card.value as? [String: Any]
+            dict.forEach { card in
+                let card = card.value as? [String: Any]
+                
+                let name = card?["cardName"] as? String ?? ""
+                let locations = card?["locations"] as? [String: [String: Any]]
+                
+                self.storage.child("MKD/\(name).png").downloadURL(completion: { url, error in
+                    guard let url = url, error == nil else { return }
+                    guard let imageURL = URL(string: url.absoluteString) else { return }
                     
-                    let name = card?["cardName"] as? String ?? ""
-                    let image = card?["cardImage"] as? String ?? ""
-                    let locations = card?["locations"] as? [String: [String: Any]]
-                    
-                    return MerchantDto(name: name, image: image, locations: locations)
-                }
+                    URLSession.shared.dataTask(with: imageURL, completionHandler: { data, _, error in
+                        guard let data = data, error == nil else { return }
+                        
+                        DispatchQueue.main.async {
+                            self.merchants.append(MerchantDto(name: name, downloadedImage: data, locations: locations))
+                        }
+                        
+                    }).resume()
+                })
             }
-        })
-    }
-}
-
-struct CardModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .cornerRadius(20)
-            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 0)
+        }
     }
 }
 
@@ -82,94 +84,84 @@ struct Merchants: View {
     var body: some View {
         NavigationView {
             ZStack {
-                if !networkManger.isConnected {
-                    VStack {
-                        Image(systemName: "wifi.slash")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 200, height: 200)
-                            .foregroundColor(.primary)
-                        Text("Cannot establish connection!".localized(language))
-                            .font(.system(size: 18))
-                            .foregroundColor(.primary)
-                            .padding()
+                ScrollView() {
+                    if !networkManger.isConnected {
+                        NoNetworkView()
                     }
-                } else {
-                    ScrollView() {
-                        ForEach(viewModel.merchants.filter({ $0.name.contains(searchText) || searchText.isEmpty }), id: \.id) { merchant in
-                            MerchantImageNameCardView(merchant: merchant)
-                                .onTapGesture {
-                                    isPresentingScanner = true
-                                    self.currentMerchant = merchant
-                                }
-                        }
-                        /// This pins the `MerchantImageNameCardView` to top of the screen.
-                        Spacer()
-                    }
-                    .searchable(text: $searchText, prompt: "Search".localized(language))
-                    .sheet(isPresented: $isPresentingScanner) {
-                        ZStack {
-                            
-                            self.codeScannerView
-                            
-                            ZStack {
-                                Image(systemName: "viewfinder")
-                                    .resizable()
-                                    .font(Font.title.weight(.ultraLight))
-                                    .scaledToFit()
-                                Rectangle()
-                                    .fill(.red)
-                                    .frame(height: 5)
-                            }.frame(width: UIScreen.main.bounds.size.width-100,
-                                    height: UIScreen.main.bounds.size.height-100,
-                                    alignment: .center)
-                            
-                            VStack(spacing: 10) {
-                                Spacer()
-                                HStack {
-                                    Spacer()
-                                    Button(action: {
-                                        isTorchOn.toggle()
-                                    }, label: {
-                                        Image(systemName: isTorchOn ? "flashlight.on.fill" : "flashlight.off.fill")
-                                            .font(.title2)
-                                            .frame(width: 50, height: 50)
-                                            .background(networkManger.isConnected ? Color.blue : Color.gray)
-                                            .clipShape(Circle())
-                                            .foregroundColor(.white)
-                                    })
-                                    .padding(.trailing)
-                                    .shadow(radius: 2)
-                                    .padding(.bottom, 10)
-                                    
-                                }
-                                // TODO: FKJ - Feature Show Gallery on camera view
-                                //                                HStack {
-                                //                                    Spacer()
-                                //                                    Button(action: {
-                                //                                        isGalleryPresented.toggle()
-                                //                                        requestGalleryPermission()
-                                //                                    }, label: {
-                                //                                        Image(systemName: "photo.on.rectangle")
-                                //                                            .font(.title2)
-                                //                                            .frame(width: 50, height: 50)
-                                //                                            .background(networkManger.isConnected ? Color.blue : Color.gray)
-                                //                                            .clipShape(Circle())
-                                //                                            .foregroundColor(.white)
-                                //                                    })
-                                //                                    .padding(.trailing)
-                                //                                    .padding(.bottom, 10)
-                                //                                    .shadow(radius: 2)
-                                //                                }
+                    ForEach(viewModel.merchants.filter({ $0.name.contains(searchText) || searchText.isEmpty }), id: \.id) { merchant in
+                        MerchantImageNameCardView(merchant: merchant)
+                            .onTapGesture {
+                                isPresentingScanner = true
+                                self.currentMerchant = merchant
                             }
-                        }
                     }
-                    .sheet(isPresented: $isPresentingMailView) {
-                        MailView(result: $result,
-                                 newSubject: "Requesting a new merchant",
-                                 newMessageBody: "Dear Walletless, I would like to report the following...")
+                    /// This pins the `MerchantImageNameCardView` to top of the screen.
+                    Spacer()
+                }
+                .searchable(text: $searchText, prompt: "Search".localized(language))
+                .sheet(isPresented: $isPresentingScanner) {
+                    ZStack {
+                        
+                        self.codeScannerView
+                        
+                        ZStack {
+                            Image(systemName: "viewfinder")
+                                .resizable()
+                                .font(Font.title.weight(.ultraLight))
+                                .scaledToFit()
+                            Rectangle()
+                                .fill(.red)
+                                .frame(height: 5)
+                        }.frame(width: UIScreen.main.bounds.size.width-100,
+                                height: UIScreen.main.bounds.size.height-100,
+                                alignment: .center)
+                        
+                        VStack(spacing: 10) {
+                            Spacer()
+                            HStack {
+                                Spacer()
+                                Button(action: {
+                                    isTorchOn.toggle()
+                                }, label: {
+                                    Image(systemName: isTorchOn ? "flashlight.on.fill" : "flashlight.off.fill")
+                                        .font(.title2)
+                                        .frame(width: 50, height: 50)
+                                        .background(networkManger.isConnected ? Color.blue : Color.gray)
+                                        .clipShape(Circle())
+                                        .foregroundColor(.white)
+                                })
+                                .padding(.trailing)
+                                .shadow(radius: 2)
+                                .padding(.bottom, 10)
+                                
+                            }
+                            // TODO: FKJ - Feature Show Gallery on camera view
+                            //                                HStack {
+                            //                                    Spacer()
+                            //                                    Button(action: {
+                            //                                        isGalleryPresented.toggle()
+                            //                                        requestGalleryPermission()
+                            //                                    }, label: {
+                            //                                        Image(systemName: "photo.on.rectangle")
+                            //                                            .font(.title2)
+                            //                                            .frame(width: 50, height: 50)
+                            //                                            .background(networkManger.isConnected ? Color.blue : Color.gray)
+                            //                                            .clipShape(Circle())
+                            //                                            .foregroundColor(.white)
+                            //                                    })
+                            //                                    .padding(.trailing)
+                            //                                    .padding(.bottom, 10)
+                            //                                    .shadow(radius: 2)
+                            //                                }
+                        }
                     }
                 }
+                .sheet(isPresented: $isPresentingMailView) {
+                    MailView(result: $result,
+                             newSubject: "Requesting a new merchant",
+                             newMessageBody: "Dear Walletless, I would like to report the following...")
+                }
+                //                }
                 
                 // Floating Button
                 VStack {
@@ -189,7 +181,7 @@ struct Merchants: View {
                         .padding()
                         .shadow(radius: 2)
                         .disabled(!networkManger.isConnected)
-                        .alert("Mail provider is missing. ", isPresented: $alertForMail, actions: {})
+                        .alert("Mail provider missing".localized(language), isPresented: $alertForMail, actions: {})
                         
                     }
                 }
@@ -199,8 +191,10 @@ struct Merchants: View {
             .background(
                 GradientBackground()
             )
+            .viewDidLoad {
+                viewModel.fetchDataIfNeeded()
+            }
             .onAppear() {
-                self.viewModel.fetchDataIfNeeded()
                 isTorchOn = false
                 searchText = ""
             }
@@ -275,4 +269,34 @@ struct Merchants_Previews: PreviewProvider {
     static var previews: some View {
         Merchants(tabSelection: Binding.constant(2))
     }
+}
+
+struct MerchantsViewModifier: ViewModifier {
+    
+    @State private var didLoad = false
+    
+    private let action: (() -> Void)?
+    
+    init(perform action: (() -> Void)?) {
+        self.action = action
+    }
+    
+    func body(content: Content) -> some View {
+        content.onAppear {
+            if !didLoad {
+                didLoad = true
+                action?()
+            }
+        }
+    }
+    
+}
+
+extension View {
+    
+    // Custom modifier for checking if the view did load.
+    func viewDidLoad(perform action: (() -> Void)?) -> some View {
+        modifier(MerchantsViewModifier(perform: action))
+    }
+    
 }

@@ -6,6 +6,7 @@ public enum Language: String, CaseIterable, Identifiable, Equatable {
     case macedonian = "mk-MK"
     case albanian = "sq"
     case english_us = "en"
+    
     public var id: Self { self }
 }
 
@@ -14,7 +15,7 @@ public class LocalizationService {
     static let shared = LocalizationService()
     static let changedLanguage = Notification.Name("changedLanguage")
     
-    private init() {}
+    private init() { /* Private Init */ }
     
     var language: Language {
         get {

@@ -25,12 +25,10 @@ class RealmManager: ObservableObject {
                            scannedCode: String,
                            typeOfCode: CodeType) {
 
-        storage.child("MKD/Tinex.png").downloadURL(completion: { url, error in
+        storage.child("MKD/\(name).png").downloadURL(completion: { url, error in
             guard let url = url, error == nil else { return }
             guard let imageURL = URL(string: url.absoluteString) else { return }
             print("Continues")
-            
-            
             
             URLSession.shared.dataTask(with: imageURL, completionHandler: { data, _, error in
                 guard let data = data, error == nil else { return }
@@ -55,9 +53,6 @@ class RealmManager: ObservableObject {
                 
             }).resume()
         })
-        
-        
-        
     }
     
     func getMerchants() {
