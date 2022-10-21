@@ -10,7 +10,8 @@ public struct SFSafariViewWrapper: UIViewControllerRepresentable {
         return SFSafariViewController(url: url)
     }
 
-    public func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SFSafariViewWrapper>) {
+    public func updateUIViewController(_ uiViewController: SFSafariViewController,
+                                       context: UIViewControllerRepresentableContext<SFSafariViewWrapper>) {
         return
     }
 }

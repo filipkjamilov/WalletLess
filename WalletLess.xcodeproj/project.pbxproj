@@ -20,7 +20,6 @@
 		02763D8D27CB9C100036F41A /* Merchant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D8C27CB9C100036F41A /* Merchant.swift */; };
 		02763D9327CC1A660036F41A /* MerchantImageNameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02763D9227CC1A660036F41A /* MerchantImageNameCardView.swift */; };
 		02B955CF283D316A0007BB9E /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B955CE283D316A0007BB9E /* Extension+String.swift */; };
-		02B955D4283D32390007BB9E /* CardGradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B955D3283D32390007BB9E /* CardGradientBackground.swift */; };
 		02B955D8283D32CC0007BB9E /* AppConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B955D7283D32CC0007BB9E /* AppConfigurationView.swift */; };
 		02B955DA283D332F0007BB9E /* SupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B955D9283D332F0007BB9E /* SupportView.swift */; };
 		02B955DC283D35460007BB9E /* AboutTheAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B955DB283D35460007BB9E /* AboutTheAppView.swift */; };
@@ -46,6 +45,8 @@
 		1791148C2901DB7C007612FD /* NoNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1791148B2901DB7C007612FD /* NoNetworkView.swift */; };
 		1791148E2901E62A007612FD /* NoNetworkViewGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1791148D2901E62A007612FD /* NoNetworkViewGradient.swift */; };
 		179114912902A6D0007612FD /* SFSafariViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179114902902A6D0007612FD /* SFSafariViewWrapper.swift */; };
+		179114932902A866007612FD /* MerchantsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179114922902A866007612FD /* MerchantsViewModel.swift */; };
+		179114952902A8D9007612FD /* Extension+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179114942902A8D9007612FD /* Extension+View.swift */; };
 		17E3A59528FAB54D0031DCE1 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3A59428FAB54D0031DCE1 /* DashboardViewModel.swift */; };
 		17E3A59728FAC0240031DCE1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3A59628FAC0240031DCE1 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
@@ -83,7 +84,6 @@
 		02763D8C27CB9C100036F41A /* Merchant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchant.swift; sourceTree = "<group>"; };
 		02763D9227CC1A660036F41A /* MerchantImageNameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantImageNameCardView.swift; sourceTree = "<group>"; };
 		02B955CE283D316A0007BB9E /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
-		02B955D3283D32390007BB9E /* CardGradientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGradientBackground.swift; sourceTree = "<group>"; };
 		02B955D7283D32CC0007BB9E /* AppConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationView.swift; sourceTree = "<group>"; };
 		02B955D9283D332F0007BB9E /* SupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportView.swift; sourceTree = "<group>"; };
 		02B955DB283D35460007BB9E /* AboutTheAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTheAppView.swift; sourceTree = "<group>"; };
@@ -105,6 +105,8 @@
 		1791148B2901DB7C007612FD /* NoNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkView.swift; sourceTree = "<group>"; };
 		1791148D2901E62A007612FD /* NoNetworkViewGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkViewGradient.swift; sourceTree = "<group>"; };
 		179114902902A6D0007612FD /* SFSafariViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariViewWrapper.swift; sourceTree = "<group>"; };
+		179114922902A866007612FD /* MerchantsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantsViewModel.swift; sourceTree = "<group>"; };
+		179114942902A8D9007612FD /* Extension+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+View.swift"; sourceTree = "<group>"; };
 		17E3A59428FAB54D0031DCE1 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		17E3A59628FAC0240031DCE1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,6 +159,7 @@
 				023CF0D3283CE64D00948FD7 /* Extension+Binding.swift */,
 				02B955CE283D316A0007BB9E /* Extension+String.swift */,
 				1790375C28FF249600F350D1 /* Extension+UICollectionReusableView.swift */,
+				179114942902A8D9007612FD /* Extension+View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -207,7 +210,7 @@
 			children = (
 				02763D7A27CB8B070036F41A /* Merchants.swift */,
 				02763D9227CC1A660036F41A /* MerchantImageNameCardView.swift */,
-				02B955D3283D32390007BB9E /* CardGradientBackground.swift */,
+				179114922902A866007612FD /* MerchantsViewModel.swift */,
 			);
 			path = merchant;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				02B955D8283D32CC0007BB9E /* AppConfigurationView.swift in Sources */,
 				17E3A59528FAB54D0031DCE1 /* DashboardViewModel.swift in Sources */,
 				02B955DA283D332F0007BB9E /* SupportView.swift in Sources */,
+				179114952902A8D9007612FD /* Extension+View.swift in Sources */,
 				1790375D28FF249600F350D1 /* Extension+UICollectionReusableView.swift in Sources */,
 				02B955CF283D316A0007BB9E /* Extension+String.swift in Sources */,
 				022A33F7283C05B6008E2037 /* LocalizationService.swift in Sources */,
@@ -485,6 +489,7 @@
 				0269DE17281AF99A00FC0E0A /* NetworkManager.swift in Sources */,
 				02B955DC283D35460007BB9E /* AboutTheAppView.swift in Sources */,
 				179114912902A6D0007612FD /* SFSafariViewWrapper.swift in Sources */,
+				179114932902A866007612FD /* MerchantsViewModel.swift in Sources */,
 				02763D7D27CB8B1C0036F41A /* Settings.swift in Sources */,
 				17E3A59728FAC0240031DCE1 /* LocationManager.swift in Sources */,
 				02E932AD27344DCA0059D1CF /* WalletLessApp.swift in Sources */,
@@ -494,7 +499,6 @@
 				02763D8D27CB9C100036F41A /* Merchant.swift in Sources */,
 				02E3ACCB280CB84000888017 /* MailView.swift in Sources */,
 				1791148E2901E62A007612FD /* NoNetworkViewGradient.swift in Sources */,
-				02B955D4283D32390007BB9E /* CardGradientBackground.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

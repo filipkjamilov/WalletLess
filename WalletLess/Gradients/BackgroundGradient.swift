@@ -13,7 +13,6 @@ public struct GradientBackground: View {
                 .foregroundStyle(LinearGradient(colors: [Color.mint.opacity(0.5), Color.purple.opacity(0.6)],
                                                 startPoint: .top,
                                                 endPoint: .leading))
-//                .blur(radius: 10)
                 .offset(x: -100, y: -150)
             RoundedRectangle(cornerRadius: 30, style: .continuous)
                 .frame(width: 500, height: 500)
@@ -21,7 +20,6 @@ public struct GradientBackground: View {
                                                 startPoint: .top,
                                                 endPoint: .leading))
                 .offset(x: 300)
-//                .blur(radius: 30)
                 .rotationEffect(.degrees(30))
             
         }.ignoresSafeArea(.all)
