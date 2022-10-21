@@ -45,6 +45,7 @@
 		1791148829015AAD007612FD /* CardViewGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1791148729015AAD007612FD /* CardViewGradient.swift */; };
 		1791148C2901DB7C007612FD /* NoNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1791148B2901DB7C007612FD /* NoNetworkView.swift */; };
 		1791148E2901E62A007612FD /* NoNetworkViewGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1791148D2901E62A007612FD /* NoNetworkViewGradient.swift */; };
+		179114912902A6D0007612FD /* SFSafariViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179114902902A6D0007612FD /* SFSafariViewWrapper.swift */; };
 		17E3A59528FAB54D0031DCE1 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3A59428FAB54D0031DCE1 /* DashboardViewModel.swift */; };
 		17E3A59728FAC0240031DCE1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3A59628FAC0240031DCE1 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
@@ -103,6 +104,7 @@
 		1791148729015AAD007612FD /* CardViewGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewGradient.swift; sourceTree = "<group>"; };
 		1791148B2901DB7C007612FD /* NoNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkView.swift; sourceTree = "<group>"; };
 		1791148D2901E62A007612FD /* NoNetworkViewGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkViewGradient.swift; sourceTree = "<group>"; };
+		179114902902A6D0007612FD /* SFSafariViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariViewWrapper.swift; sourceTree = "<group>"; };
 		17E3A59428FAB54D0031DCE1 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		17E3A59628FAC0240031DCE1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,6 +174,7 @@
 		02763D7527CB8AB80036F41A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1791148F2902A6BD007612FD /* viewWrapper */,
 				1791148A2901DB5D007612FD /* network */,
 				02B955D5283D328B0007BB9E /* mail */,
 				02B955D2283D31E40007BB9E /* settings */,
@@ -252,7 +255,6 @@
 		02E932AB27344DCA0059D1CF /* WalletLess */ = {
 			isa = PBXGroup;
 			children = (
-				1791148929016BC3007612FD /* Configuration */,
 				1790375928FF073500F350D1 /* Gradients */,
 				023CF0D0283CE5B600948FD7 /* Extensions */,
 				022A33EF283BFDB7008E2037 /* Localization */,
@@ -302,19 +304,20 @@
 			path = Gradients;
 			sourceTree = "<group>";
 		};
-		1791148929016BC3007612FD /* Configuration */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Configuration;
-			sourceTree = "<group>";
-		};
 		1791148A2901DB5D007612FD /* network */ = {
 			isa = PBXGroup;
 			children = (
 				1791148B2901DB7C007612FD /* NoNetworkView.swift */,
 			);
 			path = network;
+			sourceTree = "<group>";
+		};
+		1791148F2902A6BD007612FD /* viewWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				179114902902A6D0007612FD /* SFSafariViewWrapper.swift */,
+			);
+			path = viewWrapper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -481,6 +484,7 @@
 				1791148829015AAD007612FD /* CardViewGradient.swift in Sources */,
 				0269DE17281AF99A00FC0E0A /* NetworkManager.swift in Sources */,
 				02B955DC283D35460007BB9E /* AboutTheAppView.swift in Sources */,
+				179114912902A6D0007612FD /* SFSafariViewWrapper.swift in Sources */,
 				02763D7D27CB8B1C0036F41A /* Settings.swift in Sources */,
 				17E3A59728FAC0240031DCE1 /* LocationManager.swift in Sources */,
 				02E932AD27344DCA0059D1CF /* WalletLessApp.swift in Sources */,

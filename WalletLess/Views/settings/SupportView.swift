@@ -7,21 +7,19 @@ public struct SupportView: View {
     @AppStorage("language")
     private var language = LocalizationService.shared.language
     
+    @State private var showSafari: Bool = false
+    
     public var body: some View {
         Section(header: HStack {
             Image(systemName: "questionmark.circle")
             Text("Support".localized(language))
             
         }) {
-//            HStack {
-//                Image(systemName: "book")
-//                NavigationLink(destination: UserManualView()) {
-//                    Text("User manual".localized(language))
-//                }
-//            }
             HStack {
-                Image(systemName: "phone")
-                Link("Call us".localized(language), destination: URL(string: "tel:+38978748743")!)
+                Image(systemName: "macwindow")
+                Button("Visit us".localized(language)) {
+                    showSafari.toggle()
+                }
                     .buttonStyle(.plain)
             }
             HStack {
@@ -29,7 +27,9 @@ public struct SupportView: View {
                 Link("Email us".localized(language), destination: URL(string: "mailto:walletlessapp@gmail.com")!)
                     .buttonStyle(.plain)
             }
-        }
+        }.fullScreenCover(isPresented: $showSafari, content: {
+            SFSafariViewWrapper(url: URL(string: "https://www.walletlessapp.com")!)
+        })
         .headerProminence(.increased)
         .listRowBackground(Color.primary.opacity(0.1))
     }

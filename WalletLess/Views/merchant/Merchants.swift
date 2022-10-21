@@ -13,7 +13,7 @@ import Combine
 class MerchantsViewModel: ObservableObject {
     
     @Published var merchants = [MerchantDto]()
-    let databaseName: String = "Development"
+    let databaseName: String = "MKD"
     
     private let storage = Storage.storage().reference()
     
