@@ -21,56 +21,49 @@ struct Dashboard: View {
     var body: some View {
         NavigationView {
             ZStack {
-                if viewModel.realmManager.merchants.filter({ !$0.isInvalidated }).count == 0 {
+                ScrollView {
                     
-                    VStack(spacing: 0) {
-                        if !viewModel.locationServicesEnabled {
-                            AlertView(imageNameAsset: "NoLocation.png",
-                                      headerText: "locationPermission",
-                                      description: "locationPermissionDescription")
-                            AlertView(imageNameAsset: "ScanCards.png",
-                                      headerText: "scanCards",
-                                      description: "scanCardsDescription")
-                            Spacer()
-                        }
+                    if !viewModel.locationServicesEnabled {
+                        AlertView(imageNameAsset: "NoLocation.png",
+                                  headerText: "locationPermission",
+                                  description: "locationPermissionDescription")
                     }
-                } else {
-                    ScrollView {
-                        if !viewModel.locationServicesEnabled {
-                            AlertView(imageNameAsset: "NoLocation.png",
-                                      headerText: "locationPermission",
-                                      description: "locationPermissionDescription")
+                    
+                    if viewModel.realmManager.merchants.filter({ !$0.isInvalidated }).count == 0 {
+                        AlertView(imageNameAsset: "ScanCards.png",
+                                  headerText: "scanCards",
+                                  description: "scanCardsDescription")
+                    }
+                    
+                    ForEach(viewModel.realmManager.merchants.filter({ !$0.isInvalidated }), id: \.id) { merchant in
+                        if merchant.downloadedImage != Data() {
+                            Image(uiImage: UIImage(data: merchant.downloadedImage!)!)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .cornerRadius(15)
+                                .padding(.all, 3)
+                                .padding(.leading, 7)
+                                .padding(.trailing, 7)
+                                .listRowInsets(.init())
+                                .onTapGesture {
+                                    currentMerchant = merchant
+                                    viewModel.isPresentingSheet.toggle()
+                                }
+                                .onLongPressGesture {
+                                    currentMerchant = merchant
+                                    viewModel.isPresentingConfirmationDialog = true
+                                }
+                                .alert("Are you sure you want to remove \(currentMerchant.name) from the list?", isPresented: $viewModel.isPresentingConfirmationDialog) {
+                                    Button("Confirm".localized(language), role: .destructive) {
+                                        viewModel.realmManager.deleteMerchant(id: currentMerchant.id)
+                                        currentMerchant = MerchantDto()
+                                    }
+                                    Button("Cancel".localized(language), role: .cancel) { /* no-op */ }
+                                }
+                        } else {
+                            ProgressView()
                         }
-                        ForEach(viewModel.realmManager.merchants.filter({ !$0.isInvalidated }), id: \.id) { merchant in
-                            if merchant.downloadedImage != Data() {
-                                Image(uiImage: UIImage(data: merchant.downloadedImage!)!)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .cornerRadius(15)
-                                    .padding(.all, 3)
-                                    .padding(.leading, 7)
-                                    .padding(.trailing, 7)
-                                    .listRowInsets(.init())
-                                    .onTapGesture {
-                                        currentMerchant = merchant
-                                        viewModel.isPresentingSheet.toggle()
-                                    }
-                                    .onLongPressGesture {
-                                        currentMerchant = merchant
-                                        viewModel.isPresentingConfirmationDialog = true
-                                    }
-                                    .alert("Are you sure you want to remove \(currentMerchant.name) from the list?", isPresented: $viewModel.isPresentingConfirmationDialog) {
-                                        Button("Confirm".localized(language), role: .destructive) {
-                                            viewModel.realmManager.deleteMerchant(id: currentMerchant.id)
-                                            currentMerchant = MerchantDto()
-                                        }
-                                        Button("Cancel".localized(language), role: .cancel) { /* no-op */ }
-                                    }
-                            } else {
-                                ProgressView()
-                            }
-                            
-                        }
+                        
                     }
                 }
                 // Modal view for showing the card details

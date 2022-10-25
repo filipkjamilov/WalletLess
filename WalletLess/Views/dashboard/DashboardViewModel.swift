@@ -28,15 +28,11 @@ final class DashboardViewModel: ObservableObject {
     // MARK: - Private
     
     private func observeDeviceLocation() {
-        if locationManager.isAuthorized() {
-            locationServicesEnabled = true
-            locationManager.startUpdatingLocation()
-            locationManager.$deviceLocation.sink { newLocation in
-                self.realmManager.sortCards(with: newLocation)
-            }.store(in: &cancellables)
-        } else {
-            locationServicesEnabled = false
-        }
+        locationManager.startUpdatingLocation()
+        locationManager.$deviceLocation.sink { newLocation in
+            self.locationServicesEnabled = self.locationManager.isAuthorized()
+            self.realmManager.sortCards(with: newLocation)
+        }.store(in: &cancellables)
     }
     
     private func observeMerchants() {

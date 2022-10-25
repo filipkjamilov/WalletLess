@@ -11,11 +11,23 @@ class RealmManager: ObservableObject {
     @Published var merchants: [MerchantDto] = []
     
     static let shared = RealmManager()
-    var localRealm = try! Realm()
+    
+    var localRealm: Realm
     
     private let storage = Storage.storage().reference()
     
     private init() {
+        let config = Realm.Configuration(schemaVersion: 1)
+        do {
+            self.localRealm = try Realm(configuration: config)
+        } catch {
+            // If migration failed
+            let clearConfig = Realm.Configuration(
+                schemaVersion: 1,
+                deleteRealmIfMigrationNeeded: true
+            )
+            self.localRealm = try! Realm(configuration: clearConfig)
+        }
         getMerchants()
     }
     

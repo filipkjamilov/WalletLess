@@ -24,13 +24,11 @@ final class LocationManager: NSObject, ObservableObject {
 extension LocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Hello")
         guard let deviceLocation = locations.first else {
             return
         }
         DispatchQueue.main.async {
             self.deviceLocation = deviceLocation
-            print("Location updated!")
         }
     }
     

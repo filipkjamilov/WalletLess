@@ -127,10 +127,8 @@ struct Merchants: View {
             .background(
                 GradientBackground()
             )
-            .viewDidLoad {
-                viewModel.fetchDataIfNeeded()
-            }
             .onAppear() {
+                viewModel.fetchDataIfNeeded()
                 viewModel.isTorchOn = false
                 searchText = ""
             }
