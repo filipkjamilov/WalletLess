@@ -5,7 +5,10 @@
 "Settings" = "Прилагодување";
 "Confirm" = "Потврди";
 "Cancel" = "Откажи";
-"scanCards" = "Ве молиме скенирајте картички.";
+"scanCards" = "Започнете со скенирање!";
+"scanCardsDescription" = "Изгледа дека вашиот паричник е празен!";
+"locationPermission" = "Дозволата за локација е одбиена";
+"locationPermissionDescription" = "Картичките нема да се сортираат!";
 "Search" = "Пребарувај";
 "AppConfiguration" = "Прилагодување за апликацијата";
 "Macedonian" = "Македонски";

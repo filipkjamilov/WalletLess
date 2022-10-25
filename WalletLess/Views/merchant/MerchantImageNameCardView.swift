@@ -10,15 +10,14 @@ struct MerchantImageNameCardView: View {
     var merchant: MerchantDto
     
     var body: some View {
-
         ZStack {
+            
             CardViewGradient()
             
             VStack {
                 HStack {
                     Spacer()
-                    Button(action: {
-                    }, label: {
+                    Button(action: { /* No action so far! */}, label: {
                         Image(systemName: "creditcard")
                             .font(.title3)
                             .frame(width: 35, height: 35)
@@ -54,28 +53,4 @@ struct MerchantImageNameCardView: View {
         .padding(.leading, 5)
         .padding(.trailing, 5)
     }
-}
-
-struct MerchantImageNameCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            ScrollView {
-                VStack {
-                    MerchantImageNameCardView(merchant: MerchantDto(name: "Vero",
-                                                                    image: "https://www.linkpicture.com/q/Vero.png",
-                                                                    locations: nil))
-                    MerchantImageNameCardView(merchant: MerchantDto(name: "TopShop",
-                                                                    image: "https://www.linkpicture.com/q/Topshop.jpeg",
-                                                                    locations: nil))
-                    MerchantImageNameCardView(merchant: MerchantDto(name: "Neptun",
-                                                                    image: "https://www.linkpicture.com/q/Neptun.png",
-                                                                    locations: nil))
-                }
-            }
-            .background(
-                GradientBackground()
-            )
-            .navigationTitle("Merchants".localized(.macedonian))
-        }
-    }
-}
+} 

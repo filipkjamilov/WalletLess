@@ -24,11 +24,10 @@ class RealmManager: ObservableObject {
                            locations: List<LocationsDto>,
                            scannedCode: String,
                            typeOfCode: CodeType) {
-
+        
         storage.child("MKD/\(name).png").downloadURL(completion: { url, error in
             guard let url = url, error == nil else { return }
             guard let imageURL = URL(string: url.absoluteString) else { return }
-            print("Continues")
             
             URLSession.shared.dataTask(with: imageURL, completionHandler: { data, _, error in
                 guard let data = data, error == nil else { return }
@@ -80,23 +79,18 @@ class RealmManager: ObservableObject {
     
     public func sortCards(with location: CLLocation) {
         do {
-            
             try localRealm.write {
-                
                 self.merchants.forEach { merchant in
                     merchant.distance = .greatestFiniteMagnitude
                     merchant.locations.forEach { merchantLocation in
                         let distance = location
                             .distance(from: CLLocation(latitude: merchantLocation.latitude,
                                                        longitude: merchantLocation.longitude))
-                        
                         if merchant.distance > distance { merchant.distance = distance }
                     }
                 }
-                
                 self.merchants.sort { $0.distance < $1.distance }
             }
-            
         } catch {
             // TODO: FKJ - Error handling
             print("Error: \(error)")

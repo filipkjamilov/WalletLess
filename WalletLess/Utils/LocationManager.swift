@@ -7,16 +7,16 @@ import Combine
 final class LocationManager: NSObject, ObservableObject {
     
     @Published var deviceLocation: CLLocation = CLLocation()
+    let clLocationManager = CLLocationManager()
     
     // MARK: -
     
-    private let locationManager = CLLocationManager()
+    static let shared = LocationManager()
     
-    override init() {
+    private override init() {
         super.init()
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-        locationManager.delegate = self
+        clLocationManager.requestAlwaysAuthorization()
+        clLocationManager.delegate = self
     }
     
 }
@@ -24,10 +24,14 @@ final class LocationManager: NSObject, ObservableObject {
 extension LocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("Hello")
         guard let deviceLocation = locations.first else {
             return
         }
-        DispatchQueue.main.async { self.deviceLocation = deviceLocation }
+        DispatchQueue.main.async {
+            self.deviceLocation = deviceLocation
+            print("Location updated!")
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -38,13 +42,18 @@ extension LocationManager: CLLocationManagerDelegate {
 }
 
 extension LocationManager: LocationService {
-
+    
     public func startUpdatingLocation() {
-        self.locationManager.startUpdatingLocation()
+        clLocationManager.startUpdatingLocation()
     }
     
     public func stopUpdatingLocation() {
-        self.locationManager.stopUpdatingLocation()
+        clLocationManager.stopUpdatingLocation()
+    }
+    
+    public func isAuthorized() -> Bool {
+        return clLocationManager.authorizationStatus != .denied
+        && clLocationManager.authorizationStatus != .notDetermined
     }
     
 }
@@ -55,5 +64,7 @@ protocol LocationService {
     func startUpdatingLocation()
     
     func stopUpdatingLocation()
+    
+    func isAuthorized() -> Bool
     
 }

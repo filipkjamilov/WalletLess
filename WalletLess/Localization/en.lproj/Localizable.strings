@@ -5,7 +5,10 @@
 "Settings" = "Settings";
 "Confirm" = "Confirm";
 "Cancel" = "Cancel";
-"scanCards" = "Please scan some cards.";
+"scanCards" = "Start scaning!";
+"scanCardsDescription" = "Your wallet seems to be empty!";
+"locationPermission" = "Location permission denied";
+"locationPermissionDescription" = "Cards will not be sorted!";
 "Search" = "Search";
 "AppConfiguration" = "AppConfiguration";
 "Macedonian" = "Macedonian";

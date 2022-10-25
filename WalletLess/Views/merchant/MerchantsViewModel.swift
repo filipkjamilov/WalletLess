@@ -3,13 +3,21 @@
 import Foundation
 import FirebaseStorage
 import FirebaseDatabase
+import CodeScanner
+import MessageUI
 
 public final class MerchantsViewModel: ObservableObject {
     
     @Published var merchants = [MerchantDto]()
-    let databaseName: String = "MKD"
+    let databaseName: String = "Development"
+    
+    @Published public var isPresentingScanner = false
+    @Published public var isPresentingMailView = false
+    @Published public var alertForMail = false
+    @Published public var isTorchOn = false
     
     private let storage = Storage.storage().reference()
+    private var realmManager = RealmManager.shared
     
     func fetchDataIfNeeded() {
         let database = Database.database().reference().child(databaseName)
@@ -38,6 +46,39 @@ public final class MerchantsViewModel: ObservableObject {
                     }).resume()
                 })
             }
+        }
+    }
+        
+    func mapScannedCode(with result: (ScanResult), merchant: MerchantDto) {
+        switch result.type {
+        case .code128:
+            realmManager.addMerhant(name: merchant.name,
+                                    image: merchant.image,
+                                    locations: merchant.locations,
+                                    scannedCode: result.string,
+                                    typeOfCode: .CICode128BarcodeGenerator)
+        case .qr:
+            realmManager.addMerhant(name: merchant.name,
+                                    image: merchant.image,
+                                    locations: merchant.locations,
+                                    scannedCode: result.string,
+                                    typeOfCode: .CIQRCodeGenerator)
+        default:
+            realmManager.addMerhant(name: merchant.name,
+                                    image: merchant.image,
+                                    locations: merchant.locations,
+                                    scannedCode: result.string,
+                                    typeOfCode: .CICode128BarcodeGenerator)
+        }
+    }
+    
+    func presentMailSheet() {
+        if MFMailComposeViewController.canSendMail() {
+            // Send inApp email.
+            isPresentingMailView.toggle()
+        } else {
+            // Show alert - MailProviderMissing!
+            alertForMail.toggle()
         }
     }
 }

@@ -5,7 +5,10 @@
 "Settings" = "Cilësimet";
 "Confirm" = "Konfirmo";
 "Cancel" = "Anulo";
-"scanCards" = "Ju lutemi skanoni disa karta.";
+"scanCards" = "Filloni skanimin!";
+"scanCardsDescription" = "Portofoli juaj duket se është bosh!";
+"locationPermission" = "Leja e vendndodhjes u refuzua";
+"locationPermissionDescription" = "Kartat nuk do të renditen!";
 "Search" = "Kërko";
 "AppConfiguration" = "Konfigurimi i aplikacionit";
 "Macedonian" = "Maqedonase";

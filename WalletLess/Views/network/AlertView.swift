@@ -2,27 +2,32 @@
 
 import SwiftUI
 
-struct NoNetworkView: View {
+struct AlertView: View {
     
     @AppStorage("language")
     private var language = LocalizationService.shared.language
     
+    var imageNameAsset: String
+    var headerText: String
+    var description: String
+    
     var body: some View {
         ZStack {
-            NoNetworkViewGradient()
+            
+            AlertViewGradient()
             
             HStack {
-                Image(uiImage: UIImage(named: "NoInternet.png")!)
+                Image(uiImage: UIImage(named: imageNameAsset)!)
                     .resizable()
                     .scaledToFit()
                     .frame(minWidth: 150, maxWidth: 150, maxHeight: 100)
                     .padding(.all, 7)
                 VStack(alignment: .leading) {
-                    Text("No internet".localized(language))
+                    Text(headerText.localized(language))
                         .font(.title3)
                         .foregroundColor(.primary)
                         .bold()
-                    Text("Cannot Scan".localized(language))
+                    Text(description.localized(language))
                         .font(.caption)
                         .foregroundColor(.primary)
                         .bold()
@@ -44,17 +49,12 @@ struct NoNetworkView_Previews: PreviewProvider {
         NavigationView {
             ScrollView {
                 VStack {
-                    NoNetworkView()
-
-                    MerchantImageNameCardView(merchant: MerchantDto(name: "Vero",
-                                                                    downloadedImage: (UIImage(named: "Elektrometal.png")?.jpegData(compressionQuality: 1)!)!,
-                                                                    locations: nil))
-                    MerchantImageNameCardView(merchant: MerchantDto(name: "TopShop",
-                                                                    downloadedImage: (UIImage(named: "Elektrometal.png")?.jpegData(compressionQuality: 1)!)!,
-                                                                    locations: nil))
-                    MerchantImageNameCardView(merchant: MerchantDto(name: "Neptun",
-                                                                    downloadedImage: (UIImage(named: "Elektrometal.png")?.jpegData(compressionQuality: 1)!)!,
-                                                                    locations: nil))
+                    AlertView(imageNameAsset: "NoInternet.png",
+                              headerText: "No internet",
+                              description: "Cannot Scan")
+                    AlertView(imageNameAsset: "NoLocation.png",
+                              headerText: "Location permission denied",
+                              description: "Cards will not be sorted!")
                 }
             }
             .background(
@@ -63,5 +63,5 @@ struct NoNetworkView_Previews: PreviewProvider {
             .navigationTitle("Merchants".localized(.english_us))
         }
     }
-
+    
 }

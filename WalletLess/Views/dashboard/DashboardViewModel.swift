@@ -9,13 +9,13 @@ final class DashboardViewModel: ObservableObject {
     
     @Published var isPresentingSheet = false
     @Published var isPresentingConfirmationDialog = false
+    @Published var locationServicesEnabled = false
     var realmManager = RealmManager.shared
     
-    private var locationManager = LocationManager()
+    private var locationManager = LocationManager.shared
     private var cancellables = Set<AnyCancellable>()
     
     public func viewAppeared() {
-        locationManager.startUpdatingLocation()
         observeDeviceLocation()
         observeMerchants()
     }
@@ -28,9 +28,15 @@ final class DashboardViewModel: ObservableObject {
     // MARK: - Private
     
     private func observeDeviceLocation() {
-        locationManager.$deviceLocation.sink { newLocation in
-            self.realmManager.sortCards(with: newLocation)
-        }.store(in: &cancellables)
+        if locationManager.isAuthorized() {
+            locationServicesEnabled = true
+            locationManager.startUpdatingLocation()
+            locationManager.$deviceLocation.sink { newLocation in
+                self.realmManager.sortCards(with: newLocation)
+            }.store(in: &cancellables)
+        } else {
+            locationServicesEnabled = false
+        }
     }
     
     private func observeMerchants() {

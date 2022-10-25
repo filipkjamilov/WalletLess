@@ -22,19 +22,25 @@ struct Dashboard: View {
         NavigationView {
             ZStack {
                 if viewModel.realmManager.merchants.filter({ !$0.isInvalidated }).count == 0 {
-                    VStack {
-                        Image(systemName: "barcode.viewfinder")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 200, height: 200)
-                            .foregroundColor(.primary)
-                        Text("scanCards".localized(language))
-                            .font(.system(size: 18))
-                            .foregroundColor(.primary)
-                            .padding()
+                    
+                    VStack(spacing: 0) {
+                        if !viewModel.locationServicesEnabled {
+                            AlertView(imageNameAsset: "NoLocation.png",
+                                      headerText: "locationPermission",
+                                      description: "locationPermissionDescription")
+                            AlertView(imageNameAsset: "ScanCards.png",
+                                      headerText: "scanCards",
+                                      description: "scanCardsDescription")
+                            Spacer()
+                        }
                     }
                 } else {
                     ScrollView {
+                        if !viewModel.locationServicesEnabled {
+                            AlertView(imageNameAsset: "NoLocation.png",
+                                      headerText: "locationPermission",
+                                      description: "locationPermissionDescription")
+                        }
                         ForEach(viewModel.realmManager.merchants.filter({ !$0.isInvalidated }), id: \.id) { merchant in
                             if merchant.downloadedImage != Data() {
                                 Image(uiImage: UIImage(data: merchant.downloadedImage!)!)
