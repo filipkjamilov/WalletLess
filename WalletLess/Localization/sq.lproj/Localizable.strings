@@ -5,7 +5,10 @@
 "Settings" = "Cilësimet";
 "Confirm" = "Konfirmo";
 "Cancel" = "Anulo";
-"scanCards" = "Ju lutemi skanoni disa karta.";
+"scanCards" = "Filloni skanimin!";
+"scanCardsDescription" = "Portofoli juaj duket se është bosh!";
+"locationPermission" = "Leja e vendndodhjes u refuzua";
+"locationPermissionDescription" = "Kartat nuk do të renditen!";
 "Search" = "Kërko";
 "AppConfiguration" = "Konfigurimi i aplikacionit";
 "Macedonian" = "Maqedonase";
@@ -14,6 +17,7 @@
 "Support" = "Mbështetje";
 "User manual" = "Manuali i perdoruesit";
 "Call us" = "Na telefononi";
+"Visit us" = "Na vizitoni";
 "Email us" = "Na dërgoni me email";
 "Legal Policy" = "Politika Juridike";
 "Terms and conditions" = "Termat dhe Kushtet";
@@ -26,7 +30,9 @@
 "Developed by" = "Zhvilluar nga";
 "All rights reserved" = "Të gjitha të drejtat e rezervuara";
 "LegalPolicyFooter" = "Për më shumë politika ligjore na kontaktoni.";
-"Cannot establish connection!" = "Lidhja nuk mund të vendoset!";
+"No internet" = "Lidhja nuk mund të vendoset!";
+"Cannot Scan" = "Kartat e skanuara nuk do të ruhen!";
+"Mail provider missing" = "Ofruesi i postës mungon.";
 
 "privacyPolicy" = "Informacioni i mbledhur gjatë përdorimit të aplikacionit Gjatë përdorimit të aplikacionit tonë, për të ofruar veçori të aplikacionit tonë, ne mund të mbledhim, me lejen tuaj paraprake: Informacion në lidhje me vendndodhjen tuaj për të qenë në gjendje të renditni kartat e besnikërisë, leje për përdorimin e kamerës për të qenë në gjendje të skanoni kodin nga një kartë besnikërie. Mund të aktivizoni ose çaktivizoni aksesin në këtë informacion në çdo kohë, përmes cilësimeve të pajisjes suaj. Ndryshimet në këtë politikë të privatësisë Ne mund të përditësojmë herë pas here Politikën tonë të privatësisë. Ne do t'ju njoftojmë për çdo ndryshim duke postuar Politikën e re të Privatësisë në këtë faqe. Ne do t'ju njoftojmë me email dhe/ose një njoftim të spikatur për Shërbimin Tonë, përpara se ndryshimi të hyjë në fuqi dhe do të përditësojmë datën e përditësimit të fundit në krye të kësaj Politike të Privatësisë. Ju këshillojmë që të rishikoni periodikisht këtë Politikë të Privatësisë për çdo ndryshim. Ndryshimet në këtë politikë të privatësisë janë efektive kur ato postohen në këtë faqe. Na kontaktoni Nëse keni ndonjë pyetje në lidhje me këtë politikë të privatësisë, mund të na kontaktoni: Me email: walletlessapp@gmail.com";
 

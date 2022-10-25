@@ -29,10 +29,10 @@ class MerchantDto: Object, ObjectKeyIdentifiable {
     }
     
     // TODO: FKJ - Pass array of locations directly, avoid casting them here.
-    convenience init(name: String, image: String, locations: [String: [String: Any]]?) {
+    convenience init(name: String, downloadedImage: Data?, locations: [String: [String: Any]]?) {
         self.init()
         self.name = name
-        self.image = image
+        self.downloadedImage = downloadedImage
         if locations != nil {
             locations?.forEach { location in
                 let latitude = location.value["latitude"] as? Double ?? 0.00

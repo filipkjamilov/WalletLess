@@ -3,12 +3,16 @@
 import Foundation
 import Network
 
-class NetworkManager: ObservableObject {
-    let monitor = NWPathMonitor()
-    let queue = DispatchQueue(label: "NetworkManager")
+final class NetworkManager: ObservableObject {
+    
+    static let shared = NetworkManager()
+    
     @Published var isConnected = true
     
-    init() {
+    private let monitor = NWPathMonitor()
+    private let queue = DispatchQueue(label: "NetworkManager")
+    
+    private init() {
         monitor.pathUpdateHandler = { path in
             DispatchQueue.main.async {
                 self.isConnected = path.status == .satisfied
